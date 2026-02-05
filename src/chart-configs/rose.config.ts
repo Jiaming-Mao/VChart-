@@ -1,5 +1,6 @@
 import type { IRoseChartSpec } from '@visactor/vchart';
 import type { RoseDatum } from '@/types/dashboard';
+import { getChartTextColor } from '@/vchart/theme';
 
 /**
  * 玫瑰图 - 创建 Spec（工厂函数模式）
@@ -26,7 +27,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
       visible: true,
       position: 'outside',
       style: {
-        fill: isDark ? '#eee' : '#333',
+        fill: getChartTextColor(isDark),
       },
     },
 

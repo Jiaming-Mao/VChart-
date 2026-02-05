@@ -1,6 +1,6 @@
 import type { IWaterfallChartSpec } from '@visactor/vchart';
 import type { WaterfallDatum } from '@/types/dashboard';
-import { getDataVCategoricalColor } from '@/vchart/theme';
+import { getDataVCategoricalColor, getChartTextColor } from '@/vchart/theme';
 
 /**
  * 瀑布图 - 创建 Spec（工厂函数模式）
@@ -32,7 +32,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
           visible: true,
           valueType: 'change',
           style: {
-            fill: isDark ? '#eee' : '#333',
+            fill: getChartTextColor(isDark),
           },
         },
         // 颜色配置：正值/负值/总计（符合验收“正负值颜色区分”）

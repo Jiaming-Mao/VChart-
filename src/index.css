@@ -1,17 +1,54 @@
-@import './styles/themes/light.css';
-@import './styles/themes/dark.css';
+@import './styles/themes/_generated-light.css';
+@import './styles/themes/_generated-dark.css';
 @import './styles/dashboard.css';
 
-/* 主题的默认值由 ThemeProvider 控制；这里兜底，防止首次渲染无 data-theme */
+/**
+ * 主题兜底值
+ * 
+ * 这些值在 ThemeProvider 加载 data-theme 属性之前提供初始样式。
+ * 使用浅色主题的 token 值作为默认值。
+ * 
+ * 注意：正式的 token 值由 _generated-light.css / _generated-dark.css 提供，
+ * 这里只是防止首次渲染时出现闪烁。
+ */
 :root {
-  --bg: #f6f7fb;
+  /* 背景 */
+  --bg: #f5f6f7;
+  --token-bg-body: #ffffff;
   --panel: #ffffff;
   --panel-elevated: #ffffff;
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: rgba(15, 23, 42, 0.12);
-  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.08);
-  --primary: #3b82f6;
+  
+  /* 文本 */
+  --text: #1f2329;
+  --text-title: #1f2329;
+  --muted: #646a73;
+  
+  /* 边框与阴影 */
+  --border: #dee0e3;
+  --shadow: 0 1px 2px rgba(31, 35, 41, 0.12), 0 6px 20px rgba(31, 35, 41, 0.08);
+  
+  /* 功能色 */
+  --primary: #1456f0;
   --primary-contrast: #ffffff;
-  --focus: rgba(59, 130, 246, 0.4);
+  --danger: #f54a45;
+  --success: #35bd4b;
+  
+  /* 交互状态 */
+  --focus: rgba(20, 86, 240, 0.15);
+  
+  /* DataV 图表颜色兜底 */
+  --token-dataV-categorical-1: #3370EB;
+  --token-dataV-categorical-2: #1BCEBF;
+  --token-dataV-categorical-3: #FFC60A;
+  --token-dataV-categorical-4: #ED6D0C;
+  --token-dataV-categorical-5: #DCA1E4;
+  --token-dataV-categorical-6: #25B2E5;
+  --token-dataV-categorical-7: #6DCDEB;
+  --token-dataV-categorical-8: #288FCB;
+  --token-dataV-categorical-9: #94B5F5;
+  --token-dataV-categorical-10: #8F61D1;
+  --token-dataV-categorical-11: #BF78E9;
+  --token-dataV-categorical-12: #008280;
+  --token-dataV-categorical-13: #27AD8E;
+  --token-dataV-categorical-14: #7BC335;
 }

@@ -76,7 +76,7 @@
 }
 
 .grid :global(.react-grid-placeholder) {
-  background: rgba(59, 130, 246, 0.18);
+  background: var(--token-primary-fill-transparent-01);
   border-radius: 14px;
   transition-duration: 120ms;
 }

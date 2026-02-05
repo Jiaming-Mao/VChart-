@@ -1,0 +1,534 @@
+/**
+ * 自动生成的 深色主题变量
+ * 
+ * 此文件由 scripts/generate-css-variables.cjs 自动生成
+ * 请勿手动编辑此文件！
+ * 
+ * 生成时间: 2026-02-05T06:39:17.786Z
+ * 
+ * 包含内容:
+ *   - Token 变量: 424 个
+ *   - 语义别名: 12 个
+ *   - DataV 颜色: 14 个
+ */
+
+:root[data-theme='dark'] {
+  /* palette/blue */
+  --palette-blue-50: #152340;
+  --palette-blue-100: #173166;
+  --palette-blue-200: #194294;
+  --palette-blue-300: #2655b6;
+  --palette-blue-350: #275fce;
+  --palette-blue-400: #3370eb;
+  --palette-blue-500: #4c88ff;
+  --palette-blue-600: #75a4ff;
+  --palette-blue-700: #8fb4ff;
+  --palette-blue-800: #bdd2ff;
+  --palette-blue-900: #e0e9ff;
+
+  /* palette/carmine */
+  --palette-carmine-50: #3a182b;
+  --palette-carmine-100: #591c3f;
+  --palette-carmine-200: #782b57;
+  --palette-carmine-300: #94386c;
+  --palette-carmine-350: #ab417d;
+  --palette-carmine-400: #c24a8e;
+  --palette-carmine-500: #db5ea4;
+  --palette-carmine-600: #ed77ba;
+  --palette-carmine-700: #fc94cf;
+  --palette-carmine-800: #ffc2e5;
+  --palette-carmine-900: #ffe0f2;
+
+  /* palette/green */
+  --palette-green-50: #0e2b0a;
+  --palette-green-100: #173b12;
+  --palette-green-200: #21511a;
+  --palette-green-300: #296621;
+  --palette-green-350: #2f7526;
+  --palette-green-400: #35872a;
+  --palette-green-500: #419e34;
+  --palette-green-600: #51ba43;
+  --palette-green-700: #69cc5c;
+  --palette-green-800: #99e490;
+  --palette-green-900: #cbf5c6;
+
+  /* palette/indigo */
+  --palette-indigo-50: #1e204a;
+  --palette-indigo-100: #2a2d69;
+  --palette-indigo-200: #373d90;
+  --palette-indigo-300: #474fb8;
+  --palette-indigo-350: #515ad6;
+  --palette-indigo-400: #5e68e8;
+  --palette-indigo-500: #7b83f7;
+  --palette-indigo-600: #9499f7;
+  --palette-indigo-700: #aaaff8;
+  --palette-indigo-800: #cdd0f9;
+  --palette-indigo-900: #e7e9fe;
+
+  /* palette/lime */
+  --palette-lime-50: #212702;
+  --palette-lime-100: #303804;
+  --palette-lime-200: #404c06;
+  --palette-lime-300: #53610a;
+  --palette-lime-350: #5f700a;
+  --palette-lime-400: #6b7f05;
+  --palette-lime-500: #82990a;
+  --palette-lime-600: #93af04;
+  --palette-lime-700: #a6c313;
+  --palette-lime-800: #c2e12d;
+  --palette-lime-900: #e3f391;
+
+  /* palette/neutral */
+  --palette-neutral-00: #0a0a0a;
+  --palette-neutral-50: #1a1a1a;
+  --palette-neutral-100: #292929;
+  --palette-neutral-200: #373737;
+  --palette-neutral-300: #434343;
+  --palette-neutral-350: #505050;
+  --palette-neutral-400: #5f5f5f;
+  --palette-neutral-500: #757575;
+  --palette-neutral-600: #a6a6a6;
+  --palette-neutral-650: #cfcfcf;
+  --palette-neutral-700: #e0e0e0;
+  --palette-neutral-800: #e8e8e8;
+  --palette-neutral-900: #ebebeb;
+  --palette-neutral-950: #f8f8f8;
+  --palette-neutral-1000: #ffffff;
+
+  /* palette/orange */
+  --palette-orange-50: #33210b;
+  --palette-orange-100: #4a2b10;
+  --palette-orange-200: #683a12;
+  --palette-orange-300: #8a4a19;
+  --palette-orange-350: #a15317;
+  --palette-orange-400: #b85e1a;
+  --palette-orange-500: #db7018;
+  --palette-orange-600: #f3871b;
+  --palette-orange-700: #f89e44;
+  --palette-orange-800: #fec88b;
+  --palette-orange-900: #fee7cd;
+
+  /* palette/purple */
+  --palette-purple-50: #2b194a;
+  --palette-purple-100: #3f2073;
+  --palette-purple-200: #5529a3;
+  --palette-purple-300: #6c39c6;
+  --palette-purple-350: #7c4ad4;
+  --palette-purple-400: #8c55ec;
+  --palette-purple-500: #a575fa;
+  --palette-purple-600: #b88ffe;
+  --palette-purple-700: #c5a3ff;
+  --palette-purple-800: #dbc8fd;
+  --palette-purple-900: #efe5ff;
+
+  /* palette/red */
+  --palette-red-50: #3d1a19;
+  --palette-red-100: #591f1d;
+  --palette-red-200: #7b2524;
+  --palette-red-300: #a03331;
+  --palette-red-350: #b33a37;
+  --palette-red-400: #d14642;
+  --palette-red-500: #f05b56;
+  --palette-red-600: #f6827e;
+  --palette-red-700: #f89e9b;
+  --palette-red-800: #fdc6c4;
+  --palette-red-900: #fee3e2;
+
+  /* palette/sunflower */
+  --palette-sunflower-50: #29250a;
+  --palette-sunflower-100: #38320c;
+  --palette-sunflower-200: #574d01;
+  --palette-sunflower-300: #7a6a01;
+  --palette-sunflower-350: #9c8702;
+  --palette-sunflower-400: #c9b218;
+  --palette-sunflower-500: #e5cd17;
+  --palette-sunflower-600: #f5df36;
+  --palette-sunflower-700: #f7e663;
+  --palette-sunflower-800: #faed7a;
+  --palette-sunflower-900: #fff59e;
+
+  /* palette/turquoise */
+  --palette-turquoise-50: #132926;
+  --palette-turquoise-100: #173b36;
+  --palette-turquoise-200: #1d4e47;
+  --palette-turquoise-300: #25665e;
+  --palette-turquoise-350: #227369;
+  --palette-turquoise-400: #198578;
+  --palette-turquoise-500: #1fa18f;
+  --palette-turquoise-600: #1ab7a1;
+  --palette-turquoise-700: #17cfb5;
+  --palette-turquoise-800: #65e7d5;
+  --palette-turquoise-900: #b7f7ef;
+
+  /* palette/violet */
+  --palette-violet-50: #3b153b;
+  --palette-violet-100: #541854;
+  --palette-violet-200: #712871;
+  --palette-violet-300: #8b378b;
+  --palette-violet-350: #a43da4;
+  --palette-violet-400: #b54ab5;
+  --palette-violet-500: #d661d6;
+  --palette-violet-600: #e17fe1;
+  --palette-violet-700: #e99be9;
+  --palette-violet-800: #f4c3f4;
+  --palette-violet-900: #fcdffc;
+
+  /* palette/wathet */
+  --palette-wathet-50: #152830;
+  --palette-wathet-350: #146c91;
+  --palette-wathet-100: #103647;
+  --palette-wathet-200: #164359;
+  --palette-wathet-300: #135a78;
+  --palette-wathet-400: #1a7fab;
+  --palette-wathet-500: #1099cc;
+  --palette-wathet-600: #25b2e5;
+  --palette-wathet-700: #51c3f0;
+  --palette-wathet-800: #89dffe;
+  --palette-wathet-900: #c7f0ff;
+
+  /* palette/yellow */
+  --palette-yellow-50: #30250a;
+  --palette-yellow-100: #473409;
+  --palette-yellow-200: #63470f;
+  --palette-yellow-300: #8a6419;
+  --palette-yellow-350: #ad7d15;
+  --palette-yellow-400: #d49b0b;
+  --palette-yellow-500: #f0b622;
+  --palette-yellow-600: #fbcb46;
+  --palette-yellow-700: #fcd456;
+  --palette-yellow-800: #ffde75;
+  --palette-yellow-900: #ffeaa3;
+
+  /* token/AI */
+  --token-ai-cursor: #5e68e8;
+  --token-ai-icon-in-button: #7b83f7;
+
+  /* token/bg */
+  --token-bg-base: #0a0a0a;
+  --token-bg-body: #1a1a1a;
+  --token-bg-body-overlay: #292929;
+  --token-bg-content-base: #121212;
+  --token-bg-filler: #373737;
+  --token-bg-float: #292929;
+  --token-bg-float-base: #1a1a1a;
+  --token-bg-float-overlay: #373737;
+  --token-bg-float-push: rgba(41, 41, 41, 0.80);
+  --token-bg-mask: rgba(0, 0, 0, 0.60);
+  --token-bg-pricolor: #3370eb;
+  --token-bg-sub-navigation: #262626;
+  --token-bg-text-selection: rgba(117, 164, 255, 0.30);
+  --token-bg-tips: #505050;
+
+  /* token/colorful */
+  --token-colorful-blue: #4c88ff;
+  --token-colorful-red: #f05b56;
+  --token-colorful-orange: #f3871b;
+  --token-colorful-yellow: #f0b622;
+  --token-colorful-green: #419e34;
+  --token-colorful-wathet: #1099cc;
+  --token-colorful-indigo: #5e68e8;
+  --token-colorful-purple: #8c55ec;
+  --token-colorful-violet: #b54ab5;
+  --token-colorful-carmine: #c24a8e;
+  --token-colorful-sunflower: #e5cd17;
+  --token-colorful-turquoise: #1fa18f;
+  --token-colorful-lime: #93af04;
+  --token-colorful-neutral: #757575;
+
+  /* token/fill */
+  --token-fill-active: rgba(76, 136, 255, 0.20);
+  --token-fill-disabled: #5f5f5f;
+  --token-fill-focus: rgba(235, 235, 235, 0.12);
+  --token-fill-pressed: rgba(235, 235, 235, 0.12);
+  --token-fill-hover: rgba(235, 235, 235, 0.08);
+  --token-fill-img-mask: rgba(0, 0, 0, 0.12);
+  --token-fill-selected: rgba(76, 136, 255, 0.15);
+  --token-fill-tag: rgba(235, 235, 235, 0.10);
+  --token-fill-loading-mask: rgba(10, 10, 10, 0.60);
+
+  /* token/function */
+  --token-function-info-50: #152340;
+  --token-function-info-content-default: #4c88ff;
+  --token-function-info-content-hover: #3370eb;
+  --token-function-info-fill-default: #3370eb;
+  --token-function-info-fill-hover: #275fce;
+  --token-function-info-100: #173166;
+  --token-function-info-200: #194294;
+  --token-function-info-300: #2655b6;
+  --token-function-info-350: #275fce;
+  --token-function-info-400: #3370eb;
+  --token-function-info-500: #4c88ff;
+  --token-function-info-600: #75a4ff;
+  --token-function-info-700: #8fb4ff;
+  --token-function-info-content-pressed: #75a4ff;
+  --token-function-info-fill-pressed: #4c88ff;
+  --token-function-info-content-loading: #2655b6;
+  --token-function-info-fill-loading: #2655b6;
+  --token-function-warning-on-warning-fill: #ffffff;
+  --token-function-success-on-success-fill: #ffffff;
+  --token-function-info-on-info-fill: #ffffff;
+  --token-function-danger-on-danger-fill: #ffffff;
+  --token-function-info-fill-solid-01: #152340;
+  --token-function-info-fill-solid-02: #173166;
+  --token-function-info-fill-solid-03: #194294;
+  --token-function-info-800: #bdd2ff;
+  --token-function-info-900: #e0e9ff;
+  --token-function-info-fill-transparent-01: rgba(76, 136, 255, 0.15);
+  --token-function-info-fill-transparent-02: rgba(76, 136, 255, 0.20);
+  --token-function-info-fill-transparent-03: rgba(76, 136, 255, 0.30);
+  --token-function-danger-50: #3d1a19;
+  --token-function-danger-fill-solid-01: #3d1a19;
+  --token-function-danger-100: #591f1d;
+  --token-function-danger-fill-solid-02: #591f1d;
+  --token-function-danger-200: #7b2524;
+  --token-function-danger-fill-solid-03: #7b2524;
+  --token-function-danger-content-default: #f05b56;
+  --token-function-danger-300: #a03331;
+  --token-function-danger-fill-loading: #a03331;
+  --token-function-danger-350: #b33a37;
+  --token-function-danger-content-hover: #d14642;
+  --token-function-danger-fill-hover: #b33a37;
+  --token-function-danger-400: #d14642;
+  --token-function-danger-fill-default: #d14642;
+  --token-function-danger-500: #f05b56;
+  --token-function-danger-600: #f6827e;
+  --token-function-danger-700: #f89e9b;
+  --token-function-danger-800: #fdc6c4;
+  --token-function-danger-900: #fee3e2;
+  --token-function-success-50: #0e2b0a;
+  --token-function-success-fill-solid-01: #0e2b0a;
+  --token-function-success-100: #173b12;
+  --token-function-success-fill-solid-02: #173b12;
+  --token-function-success-200: #21511a;
+  --token-function-success-fill-solid-03: #21511a;
+  --token-function-success-300: #296621;
+  --token-function-success-fill-default: #419e34;
+  --token-function-success-fill-hover: #35872a;
+  --token-function-success-350: #2f7526;
+  --token-function-success-fill-pressed: #51ba43;
+  --token-function-success-content-default: #51ba43;
+  --token-function-success-content-hover: #419e34;
+  --token-function-success-fill-loading: #296621;
+  --token-function-success-400: #35872a;
+  --token-function-success-500: #419e34;
+  --token-function-success-content-pressed: #69cc5c;
+  --token-function-success-content-loading: #296621;
+  --token-function-success-600: #51ba43;
+  --token-function-success-700: #69cc5c;
+  --token-function-success-800: #99e490;
+  --token-function-success-900: #cbf5c6;
+  --token-function-warning-50: #33210b;
+  --token-function-warning-fill-solid-01: #33210b;
+  --token-function-warning-100: #4a2b10;
+  --token-function-warning-fill-solid-02: #4a2b10;
+  --token-function-warning-200: #683a12;
+  --token-function-warning-fill-solid-03: #683a12;
+  --token-function-warning-content-default: #f3871b;
+  --token-function-warning-300: #8a4a19;
+  --token-function-warning-fill-default: #f3871b;
+  --token-function-warning-fill-hover: #db7018;
+  --token-function-warning-350: #a15317;
+  --token-function-warning-content-hover: #db7018;
+  --token-function-warning-400: #b85e1a;
+  --token-function-warning-fill-pressed: #f89e44;
+  --token-function-warning-fill-loading: #8a4a19;
+  --token-function-warning-500: #db7018;
+  --token-function-warning-content-pressed: #f89e44;
+  --token-function-warning-content-loading: #8a4a19;
+  --token-function-warning-600: #f3871b;
+  --token-function-warning-700: #f89e44;
+  --token-function-warning-800: #fec88b;
+  --token-function-warning-900: #fee7cd;
+  --token-function-warning-fill-transparent-01: rgba(243, 135, 27, 0.15);
+  --token-function-warning-fill-transparent-02: rgba(243, 135, 27, 0.20);
+  --token-function-warning-fill-transparent-03: rgba(243, 135, 27, 0.30);
+  --token-function-success-fill-transparent-01: rgba(65, 158, 52, 0.15);
+  --token-function-success-fill-transparent-02: rgba(65, 158, 52, 0.20);
+  --token-function-success-fill-transparent-03: rgba(65, 158, 52, 0.30);
+  --token-function-danger-content-pressed: #f6827e;
+  --token-function-danger-fill-pressed: #f05b56;
+  --token-function-danger-content-loading: #a03331;
+  --token-function-danger-fill-transparent-01: rgba(240, 91, 86, 0.15);
+  --token-function-danger-fill-transparent-02: rgba(240, 91, 86, 0.20);
+  --token-function-danger-fill-transparent-03: rgba(240, 91, 86, 0.30);
+
+  /* token/icon */
+  --token-icon-n1: #e8e8e8;
+  --token-icon-n2: #a6a6a6;
+  --token-icon-n3: #757575;
+  --token-icon-disabled: #5f5f5f;
+
+  /* token/illustration */
+  --token-illustration-blue-a: #e0e0e0;
+  --token-illustration-blue-b: rgba(255, 255, 255, 0.40);
+  --token-illustration-blue-c: #5f5f5f;
+  --token-illustration-blue-d: #2655b6;
+  --token-illustration-blue-e: #4c88ff;
+  --token-illustration-neutral-a: #ebebeb;
+  --token-illustration-neutral-b: #373737;
+  --token-illustration-neutral-c: rgba(255, 255, 255, 0.30);
+  --token-illustration-neutral-d: rgba(255, 255, 255, 0.40);
+  --token-illustration-orange: #f3871b;
+  --token-illustration-red: #f05b56;
+  --token-illustration-static-black: #000000;
+  --token-illustration-static-white: #ffffff;
+  --token-illustration-turquoise: #17cfb5;
+  --token-illustration-wathet: #51c3f0;
+  --token-illustration-yellow: #f0b622;
+
+  /* token/inverse */
+  --token-inverse-primary-content-default: #75a4ff;
+  --token-inverse-primary-content-hover: #8fb4ff;
+  --token-inverse-primary-content-pressed: #4c88ff;
+
+  /* token/line */
+  --token-line-border-card: rgba(235, 235, 235, 0.15);
+  --token-line-border-component: #505050;
+  --token-line-divider-default: rgba(207, 207, 207, 0.15);
+  --token-line-divider-module: #000000;
+
+  /* token/primary */
+  --token-primary-pri-50: #152340;
+  --token-primary-pri-100: #173166;
+  --token-primary-pri-200: #194294;
+  --token-primary-pri-300: #2655b6;
+  --token-primary-pri-350: #275fce;
+  --token-primary-pri-400: #3370eb;
+  --token-primary-content-default: #4c88ff;
+  --token-primary-pri-500: #4c88ff;
+  --token-primary-content-hover: #3370eb;
+  --token-primary-fill-default: #3370eb;
+  --token-primary-fill-hover: #275fce;
+  --token-primary-pri-600: #75a4ff;
+  --token-primary-pri-700: #8fb4ff;
+  --token-primary-content-pressed: #75a4ff;
+  --token-primary-content-loading: #2655b6;
+  --token-primary-fill-pressed: #4c88ff;
+  --token-primary-fill-loading: #2655b6;
+  --token-primary-fill-solid-01: #152340;
+  --token-primary-fill-solid-02: #173166;
+  --token-primary-fill-solid-03: #194294;
+  --token-primary-pri-800: #bdd2ff;
+  --token-primary-pri-900: #e0e9ff;
+  --token-primary-on-primary-fill: #ffffff;
+  --token-primary-fill-transparent-01: rgba(76, 136, 255, 0.15);
+  --token-primary-fill-transparent-02: rgba(76, 136, 255, 0.20);
+  --token-primary-fill-transparent-03: rgba(76, 136, 255, 0.30);
+
+  /* token/shadow */
+  --token-shadow-default: #000000;
+  --token-shadow-default-lg: rgba(0, 0, 0, 0.24);
+  --token-shadow-default-md: rgba(0, 0, 0, 0.28);
+  --token-shadow-default-sm: rgba(0, 0, 0, 0.32);
+  --token-shadow-pri: #245bdb;
+  --token-shadow-pri-lg: rgba(25, 66, 148, 0.48);
+  --token-shadow-pri-md: rgba(25, 66, 148, 0.48);
+
+  /* token/static */
+  --token-static-black: #000000;
+  --token-static-white: #ffffff;
+  --token-static-white-hover: rgba(255, 255, 255, 0.10);
+  --token-static-white-pressed: rgba(255, 255, 255, 0.20);
+
+  /* token/text */
+  --token-text-caption: #a6a6a6;
+  --token-text-disabled: #5f5f5f;
+  --token-text-link-disabled: #5f5f5f;
+  --token-text-link-hover: #3370eb;
+  --token-text-link-loading: #2655b6;
+  --token-text-link-normal: #4c88ff;
+  --token-text-link-pressed: #75a4ff;
+  --token-text-placeholder: #757575;
+  --token-text-title: #ebebeb;
+
+  /* token/transparent */
+  --token-transparent-neutral-n00-5pct: rgba(10, 10, 10, 0.05);
+  --token-transparent-static-white-5pct: rgba(255, 255, 255, 0.05);
+  --token-transparent-neutral-n00-10pct: rgba(10, 10, 10, 0.10);
+  --token-transparent-static-white-10pct: rgba(255, 255, 255, 0.10);
+  --token-transparent-neutral-n00-15pct: rgba(10, 10, 10, 0.15);
+  --token-transparent-neutral-n00-20pct: rgba(10, 10, 10, 0.20);
+  --token-transparent-neutral-n00-30pct: rgba(10, 10, 10, 0.30);
+  --token-transparent-neutral-n00-40pct: rgba(10, 10, 10, 0.40);
+  --token-transparent-neutral-n00-50pct: rgba(10, 10, 10, 0.50);
+  --token-transparent-static-white-15pct: rgba(255, 255, 255, 0.15);
+  --token-transparent-neutral-n00-60pct: rgba(10, 10, 10, 0.60);
+  --token-transparent-neutral-n00-70pct: rgba(10, 10, 10, 0.70);
+  --token-transparent-static-white-20pct: rgba(255, 255, 255, 0.20);
+  --token-transparent-static-white-30pct: rgba(255, 255, 255, 0.30);
+  --token-transparent-static-white-40pct: rgba(255, 255, 255, 0.40);
+  --token-transparent-static-white-50pct: rgba(255, 255, 255, 0.50);
+  --token-transparent-static-white-60pct: rgba(255, 255, 255, 0.60);
+  --token-transparent-neutral-n00-80pct: rgba(10, 10, 10, 0.80);
+  --token-transparent-static-white-70pct: rgba(255, 255, 255, 0.70);
+  --token-transparent-static-white-80pct: rgba(255, 255, 255, 0.80);
+  --token-transparent-neutral-n00-90pct: rgba(10, 10, 10, 0.90);
+  --token-transparent-static-white-90pct: rgba(255, 255, 255, 0.90);
+  --token-transparent-neutral-n900-5pct: rgba(235, 235, 235, 0.05);
+  --token-transparent-neutral-n900-10pct: rgba(235, 235, 235, 0.10);
+  --token-transparent-neutral-n900-15pct: rgba(235, 235, 235, 0.15);
+  --token-transparent-neutral-n900-20pct: rgba(235, 235, 235, 0.20);
+  --token-transparent-neutral-n900-30pct: rgba(235, 235, 235, 0.30);
+  --token-transparent-neutral-n900-40pct: rgba(235, 235, 235, 0.40);
+  --token-transparent-neutral-n900-50pct: rgba(235, 235, 235, 0.50);
+  --token-transparent-neutral-n900-60pct: rgba(235, 235, 235, 0.60);
+  --token-transparent-neutral-n900-70pct: rgba(235, 235, 235, 0.70);
+  --token-transparent-neutral-n900-80pct: rgba(235, 235, 235, 0.80);
+  --token-transparent-neutral-n900-90pct: rgba(235, 235, 235, 0.90);
+  --token-transparent-static-black-5pct: rgba(0, 0, 0, 0.05);
+  --token-transparent-static-black-10pct: rgba(0, 0, 0, 0.10);
+  --token-transparent-static-black-15pct: rgba(0, 0, 0, 0.15);
+  --token-transparent-static-black-20pct: rgba(0, 0, 0, 0.20);
+  --token-transparent-static-black-30pct: rgba(0, 0, 0, 0.30);
+  --token-transparent-static-black-40pct: rgba(0, 0, 0, 0.40);
+  --token-transparent-static-black-50pct: rgba(0, 0, 0, 0.50);
+  --token-transparent-static-black-60pct: rgba(0, 0, 0, 0.60);
+  --token-transparent-static-black-70pct: rgba(0, 0, 0, 0.70);
+  --token-transparent-static-black-80pct: rgba(0, 0, 0, 0.80);
+  --token-transparent-static-black-90pct: rgba(0, 0, 0, 0.90);
+
+  /* token/vnext */
+  --token-vnext-bg-sub-navigation: rgba(30, 30, 30, 0.50);
+  --token-vnext-bg-thirdly-navigation: rgba(26, 26, 26, 0.70);
+  --token-vnext-bg-content-header: #222222;
+  --token-vnext-aurora-bg-main: rgba(16, 153, 204, 0.20);
+  --token-vnext-aurora-bg-subordinate: rgba(16, 153, 204, 0.20);
+  --token-vnext-aurora-bg-reflection: rgba(165, 117, 250, 0.15);
+
+  /* ==================== */
+  /* 语义别名 (Semantic Aliases) */
+  /* ==================== */
+  --bg: var(--token-bg-body-overlay);
+  --text: var(--palette-neutral-900);
+  --text-title: var(--token-text-title);
+  --muted: var(--token-text-caption);
+  --border: var(--token-line-border-card);
+  --shadow: 0 1px 2px var(--token-shadow-default), 0 12px 30px var(--token-shadow-default);
+  --primary: var(--token-primary-fill-default);
+  --primary-contrast: var(--palette-neutral-00);
+  --danger: var(--token-function-danger-fill-default);
+  --success: var(--token-function-success-fill-default);
+  --focus: var(--token-primary-fill-transparent-01);
+  --panel-elevated: var(--palette-neutral-100);
+
+  /* ==================== */
+  /* DataV 图表调色板 */
+  /* ==================== */
+  --token-dataV-categorical-1: #3370EB;
+  --token-dataV-categorical-2: #1BCEBF;
+  --token-dataV-categorical-3: #FFC60A;
+  --token-dataV-categorical-4: #ED6D0C;
+  --token-dataV-categorical-5: #DCA1E4;
+  --token-dataV-categorical-6: #25B2E5;
+  --token-dataV-categorical-7: #6DCDEB;
+  --token-dataV-categorical-8: #288FCB;
+  --token-dataV-categorical-9: #94B5F5;
+  --token-dataV-categorical-10: #8F61D1;
+  --token-dataV-categorical-11: #BF78E9;
+  --token-dataV-categorical-12: #008280;
+  --token-dataV-categorical-13: #27AD8E;
+  --token-dataV-categorical-14: #7BC335;
+
+  /* 系统 UI 配色方案 */
+  color-scheme: dark;
+}

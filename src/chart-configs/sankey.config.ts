@@ -1,5 +1,6 @@
 import type { ISankeyChartSpec } from '@visactor/vchart';
 import type { SankeyData } from '@/types/dashboard';
+import { getChartTextColor } from '@/vchart/theme';
 
 /**
  * 桑基图 - 创建 Spec（工厂函数模式）
@@ -48,7 +49,7 @@ export function createSankeySpec(
     label: {
       visible: true,
       style: {
-        fill: isDark ? '#eee' : '#333',
+        fill: getChartTextColor(isDark),
       },
     },
   };

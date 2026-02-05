@@ -1,5 +1,6 @@
 import type { ICirclePackingChartSpec } from '@visactor/vchart';
 import type { CirclePackingBubbleDatum } from '@/types/dashboard';
+import { getChartTextColor } from '@/vchart/theme';
 
 /**
  * 圆形打包图 - 创建 Spec（工厂函数模式）
@@ -35,7 +36,7 @@ export function createCirclePackingSpec(
     label: {
       style: {
         fontSize: 10,
-        fill: isDark ? '#eee' : '#333',
+        fill: getChartTextColor(isDark),
       },
     },
 

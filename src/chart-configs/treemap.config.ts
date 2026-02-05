@@ -1,5 +1,6 @@
 import type { ITreemapChartSpec } from '@visactor/vchart';
 import type { TreemapNode } from '@/types/dashboard';
+import { getChartTextColor } from '@/vchart/theme';
 
 /**
  * 矩形树图 - 创建 Spec（工厂函数模式）
@@ -22,7 +23,7 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
       smartInvert: true,
       style: {
         fontSize: 12,
-        fill: isDark ? '#eee' : '#333',
+        fill: getChartTextColor(isDark),
       },
     },
 
