@@ -37,12 +37,41 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     outerRadius: 0.75,
     // [DEFAULT] 内半径
     innerRadius: 0,
+
+    // [DEFAULT] 扇形样式配置
+    rose: {
+      style: {
+        // [DEFAULT] 扇形边框颜色 - 使用背景色让扇形间有间距
+        stroke: t['bg/body'],
+        // [DEFAULT] 边框宽度 2px
+        lineWidth: 2,
+      },
+      state: {
+        // [DEFAULT] hover 状态 - 无变化
+        hover: {
+          fillOpacity: 1,
+        },
+      },
+    },
+
     // [DEFAULT] 标签配置
     label: {
       visible: true,
       position: 'outside',
       style: {
+        fontSize: 12,
         fill: t['text/title'],
+      },
+      // [DEFAULT] 引导线配置
+      line: {
+        visible: true,
+        style: {
+          stroke: t['border/line-divider'],
+        },
+      },
+      // [DEFAULT] 标签布局配置 - 两侧对齐
+      layout: {
+        align: 'edge',
       },
     },
 
