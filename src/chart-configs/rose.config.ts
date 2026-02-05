@@ -20,7 +20,13 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改
     // ============================================
-    // （当前无固定样式配置）
+    // [FIXED] 图表内边距
+    padding: {
+      top: 0,
+      right: 20,
+      bottom: 20,
+      left: 20,
+    },
 
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
@@ -37,10 +43,56 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
         fill: getChartTextColor(isDark),
       },
     },
-    // [DEFAULT] 图例配置
+    // ============================================
+    // 图例配置
+    // ============================================
     legends: {
+      // [DEFAULT] 图例显示
       visible: true,
-      orient: 'right',
+      // [DEFAULT] 图例位置 - 居顶
+      orient: 'top',
+      // [DEFAULT] 图例对齐 - 居左
+      position: 'start',
+
+      // ============================================
+      // [FIXED] 图例固定样式 - AI 不可修改
+      // ============================================
+      // [FIXED] 最多一行
+      maxRow: 1,
+      // [FIXED] 自动分页
+      autoPage: true,
+      // [FIXED] 图例与图表间距 8
+      padding: { bottom: 8 },
+      // [FIXED] 图例项配置
+      item: {
+        shape: {
+          // [FIXED] 圆形与文字间距 6
+          space: 6,
+          style: {
+            // [FIXED] 圆形图例
+            symbolType: 'circle',
+            // [FIXED] 图例圆形大小 8×8 像素
+            size: 8,
+          },
+        },
+        // [FIXED] 图例项背景配置 - hover 无背景色
+        background: {
+          state: {
+            selectedHover: { fillOpacity: 0 },
+            unSelectedHover: { fillOpacity: 0 },
+          },
+        },
+      },
+      // [FIXED] 分页器配置
+      pager: {
+        // [FIXED] 不显示分页数字
+        textStyle: { visible: false },
+        // [FIXED] 翻页按钮 - 箭头为上下
+        handler: {
+          preShape: 'triangleUp',
+          nextShape: 'triangleDown',
+        },
+      },
     },
   };
 }

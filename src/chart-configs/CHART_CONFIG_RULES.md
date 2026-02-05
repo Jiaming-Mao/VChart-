@@ -56,7 +56,42 @@
 
 ---
 
-## 四、各图表配置分类
+## 四、通用组件配置
+
+### Padding（图表内边距）
+
+图表内边距配置适用于所有图表。
+
+| 配置项 | 分类 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `padding.top` | FIXED | `0` | 上内边距 |
+| `padding.right` | FIXED | `20` | 右内边距 |
+| `padding.bottom` | FIXED | `20` | 下内边距 |
+| `padding.left` | FIXED | `20` | 左内边距 |
+
+### Legend（图例）
+
+图例配置适用于所有图表。瀑布图、玫瑰图、矩形树图默认显示图例（`visible: true`），其他图表默认隐藏图例（`visible: false`）。
+
+| 配置项 | 分类 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `legends.visible` | DEFAULT | `true/false` | 图例显示 |
+| `legends.orient` | DEFAULT | `'top'` | 图例位置（居顶） |
+| `legends.position` | DEFAULT | `'start'` | 图例对齐（居左） |
+| `legends.maxRow` | FIXED | `1` | 最多一行 |
+| `legends.autoPage` | FIXED | `true` | 自动分页 |
+| `legends.padding.bottom` | FIXED | `8` | 图例与图表间距 |
+| `legends.item.shape.space` | FIXED | `6` | 图例圆形与文字间距 |
+| `legends.item.shape.style.symbolType` | FIXED | `'circle'` | 圆形图例 |
+| `legends.item.shape.style.size` | FIXED | `8` | 图例圆形大小（8×8 像素） |
+| `legends.item.background.state.*.fillOpacity` | FIXED | `0` | hover 无背景色 |
+| `legends.pager.textStyle.visible` | FIXED | `false` | 不显示分页数字 |
+| `legends.pager.handler.preShape` | FIXED | `'triangleUp'` | 上翻页箭头 |
+| `legends.pager.handler.nextShape` | FIXED | `'triangleDown'` | 下翻页箭头 |
+
+---
+
+## 五、各图表配置分类
 
 ### 1. CirclePacking（圆形打包图）
 
@@ -69,6 +104,7 @@
 | `tooltip.visible` | DEFAULT | `true` | 提示框显示 |
 | `label.style.fontSize` | DEFAULT | `10` | 标签字号 |
 | `drill` | DEFAULT | `true` | 钻取交互 |
+| `legends` | - | 见第四章 | 图例配置（默认隐藏） |
 
 ### 2. Rose（玫瑰图）
 
@@ -78,8 +114,7 @@
 | `innerRadius` | DEFAULT | `0` | 内半径 |
 | `label.visible` | DEFAULT | `true` | 标签显示 |
 | `label.position` | DEFAULT | `'outside'` | 标签位置 |
-| `legends.visible` | DEFAULT | `true` | 图例显示 |
-| `legends.orient` | DEFAULT | `'right'` | 图例位置 |
+| `legends` | - | 见第四章 | 图例配置 |
 
 ### 3. Sankey（桑基图）
 
@@ -88,6 +123,7 @@
 | `node.style.fillOpacity` | FIXED | `0.9` | 节点透明度 |
 | `link.style.fillOpacity` | FIXED | `0.3` | 连接线透明度 |
 | `label.visible` | DEFAULT | `true` | 标签显示 |
+| `legends` | - | 见第四章 | 图例配置（默认隐藏） |
 
 ### 4. Treemap（矩形树图）
 
@@ -98,6 +134,7 @@
 | `label.style.fontSize` | DEFAULT | `12` | 标签字号 |
 | `drill` | DEFAULT | `true` | 钻取交互 |
 | `nonLeaf.visible` | DEFAULT | `false` | 非叶节点显示 |
+| `legends` | - | 见第四章 | 图例配置 |
 
 ### 5. Waterfall（瀑布图）
 
@@ -108,10 +145,11 @@
 | `total.text` | DEFAULT | `'总计'` | 总计文案 |
 | `stackLabel.visible` | DEFAULT | `true` | 堆叠标签显示 |
 | `stackLabel.valueType` | DEFAULT | `'change'` | 标签值类型 |
+| `legends` | - | 见第四章 | 图例配置 |
 
 ---
 
-## 五、新增配置指南
+## 六、新增配置指南
 
 ### 代码注释格式
 
