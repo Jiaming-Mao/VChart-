@@ -11,7 +11,7 @@ interface SankeyChartProps {
 const VCHART_OPTIONS = { autoFit: true } as const;
 
 export const SankeyChart: React.FC<SankeyChartProps> = ({ data }) => {
-  const { isDark } = useTheme();
+  const { isDark, theme } = useTheme();
 
   const spec = useMemo(() => createSankeySpec(data, isDark), [data, isDark]);
 
@@ -29,7 +29,7 @@ export const SankeyChart: React.FC<SankeyChartProps> = ({ data }) => {
     );
   }
 
-  return <VChart spec={spec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
+  return <VChart key={theme} spec={spec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
 };
 
 export default SankeyChart;

@@ -14,16 +14,18 @@ function resolveCssVar(varName: string, fallback: string): string {
 /**
  * 获取图表文本颜色
  * 
- * 从 CSS 变量 --token-text-title 读取当前主题的文本颜色。
- * 颜色定义在 _generated-light.css / _generated-dark.css 中。
+ * 直接根据 isDark 参数返回对应的文本颜色。
  * 
- * @param isDark - 是否深色模式（用于 SSR 回退）
+ * 注意：不使用 CSS 变量是因为存在时序问题 —— React 状态更新后子组件
+ * 立即重新渲染，但 useEffect 中的 DOM 更新（data-theme 属性）是异步的，
+ * 导致 getComputedStyle 读取到的仍是旧主题的 CSS 变量值。
+ * 
+ * @param isDark - 是否深色模式
  * @returns 当前主题的文本颜色
  */
 export function getChartTextColor(isDark: boolean): string {
-  // SSR 或 CSS 未加载时的回退值
-  const fallback = isDark ? '#ebebeb' : '#1f2329';
-  return resolveCssVar('--token-text-title', fallback);
+  // 颜色值与 _generated-light.css / _generated-dark.css 中的 --token-text-title 保持一致
+  return isDark ? '#ebebeb' : '#1f2329';
 }
 
 /**

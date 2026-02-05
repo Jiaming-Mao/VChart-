@@ -11,7 +11,7 @@ interface RoseChartProps {
 const VCHART_OPTIONS = { autoFit: true } as const;
 
 export const RoseChart: React.FC<RoseChartProps> = ({ data }) => {
-  const { isDark } = useTheme();
+  const { isDark, theme } = useTheme();
 
   const spec = useMemo(() => createRoseSpec(data, isDark), [data, isDark]);
 
@@ -28,7 +28,7 @@ export const RoseChart: React.FC<RoseChartProps> = ({ data }) => {
     );
   }
 
-  return <VChart spec={spec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
+  return <VChart key={theme} spec={spec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
 };
 
 export default RoseChart;
