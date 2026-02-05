@@ -56,9 +56,27 @@ export function createCirclePackingSpec(
     // ============================================
     // [DEFAULT] 标签样式
     label: {
+      // [DEFAULT] 智能反色 - 根据气泡颜色自动调整标签颜色
+      // @ts-expect-error smartInvert 是 VChart 运行时支持的属性，但类型定义中尚未包含
+      smartInvert: true,
       style: {
         fontSize: 10,
-        fill: t['text/title'],
+        fill: t['static/white'],
+        // [DEFAULT] 标签无描边
+        stroke: 'transparent',
+        // [DEFAULT] 标签垂直居中
+        textBaseline: 'middle',
+        // [DEFAULT] 标签超出气泡范围则隐藏（通过透明度控制）
+        // 使用回调函数根据 value 和标签文本长度判断是否显示
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        fillOpacity: (datum: any) => {
+          // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
+          const radius = datum?.radius || 0;
+          const text = datum?.name || '';
+          const textWidth = text.length * 6; // 估算文本宽度（每字符约 6px）
+          // 标签宽度小于直径的 80% 时显示，否则透明
+          return textWidth < radius * 1.6 ? 1 : 0;
+        },
       },
     },
 
@@ -127,7 +145,7 @@ export function createCirclePackingSpec(
     // ============================================
     legends: {
       // [DEFAULT] 图例显示
-      visible: false,
+      visible: true,
       // [DEFAULT] 图例位置 - 居顶
       orient: 'top',
       // [DEFAULT] 图例对齐 - 居左
@@ -140,8 +158,8 @@ export function createCirclePackingSpec(
       maxRow: 1,
       // [FIXED] 自动分页
       autoPage: true,
-      // [FIXED] 图例与图表间距 8
-      padding: { bottom: 8 },
+      // [FIXED] 图例与图表间距 40
+      padding: { bottom: 40 },
       // [FIXED] 图例项配置
       item: {
         shape: {

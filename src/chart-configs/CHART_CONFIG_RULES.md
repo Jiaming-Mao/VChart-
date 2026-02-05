@@ -154,12 +154,17 @@ const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
 
 | 配置项 | 分类 | 默认值 | 说明 |
 |--------|------|--------|------|
+| `padding` | FIXED | `20` | 图表内边距（上下左右居中） |
 | `layoutPadding` | FIXED | `5` | 气泡间距 |
 | `animationEnter.easing` | FIXED | `'cubicInOut'` | 入场动画缓动 |
 | `animationExit.easing` | FIXED | `'cubicInOut'` | 退场动画缓动 |
 | `animationUpdate.easing` | FIXED | `'cubicInOut'` | 更新动画缓动 |
 | `tooltip.visible` | DEFAULT | `true` | 提示框显示 |
+| `label.smartInvert` | DEFAULT | `true` | 智能反色（根据气泡颜色自动调整） |
 | `label.style.fontSize` | DEFAULT | `10` | 标签字号 |
+| `label.style.stroke` | DEFAULT | `'transparent'` | 标签无描边 |
+| `label.style.textBaseline` | DEFAULT | `'middle'` | 标签垂直居中 |
+| `label.overlap.hideOnHit` | DEFAULT | `true` | 标签超出气泡范围则隐藏 |
 | `drill` | DEFAULT | `true` | 钻取交互 |
 | `legends` | - | 见第四章 | 图例配置（默认隐藏） |
 

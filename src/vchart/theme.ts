@@ -10,7 +10,11 @@ export const TOKEN_COLORS = {
     'text/caption': '#646a73',
     'bg/float': '#ffffff',
     'border/card': '#dee0e3',
+    'border/line-divider': 'rgba(31, 35, 41, 0.15)',
     'shadow/n900-5pct': 'rgba(31, 35, 41, 0.05)',
+    'bg/body': '#ffffff',
+    // 静态色（不随主题变化）
+    'static/white': '#ffffff',
     // DataV 14 色调色板
     'dataV/categorical/1': '#3370EB',
     'dataV/categorical/2': '#1BCEBF',
@@ -33,7 +37,11 @@ export const TOKEN_COLORS = {
     'text/caption': '#a6a6a6',
     'bg/float': '#292929',
     'border/card': 'rgba(235, 235, 235, 0.15)',
+    'border/line-divider': 'rgba(207, 207, 207, 0.15)',
     'shadow/n900-5pct': 'rgba(235, 235, 235, 0.05)',
+    'bg/body': '#1a1a1a',
+    // 静态色（不随主题变化）
+    'static/white': '#ffffff',
     // DataV 14 色调色板（深色模式下相同）
     'dataV/categorical/1': '#3370EB',
     'dataV/categorical/2': '#1BCEBF',
