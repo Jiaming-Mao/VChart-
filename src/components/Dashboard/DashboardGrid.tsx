@@ -41,10 +41,6 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({ layout, onLayoutCh
       breakpoints={GRID_CONFIG.breakpoints}
       cols={GRID_CONFIG.cols}
       rowHeight={GRID_CONFIG.rowHeight}
-      // 处理外间距：由画布 padding 控制到边缘的距离
-      containerPadding={[0, 0]}
-      // 横向/纵向间距均为 16
-      margin={[16, 16]}
       draggableHandle=".drag-handle"
       onLayoutChange={(currentLayout: Layout) => onLayoutChange(currentLayout)}
       onDragStop={dispatchResize}

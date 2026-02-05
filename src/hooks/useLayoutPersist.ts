@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Layout } from 'react-grid-layout';
 
 // ⚠️ 布局结构变化时升级版本号
-const LAYOUT_VERSION = 'v2';
+const LAYOUT_VERSION = 'v1';
 const STORAGE_KEY = `dashboard-layout-${LAYOUT_VERSION}`;
 
 export function useLayoutPersist(defaultLayout: Layout) {

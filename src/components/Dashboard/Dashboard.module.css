@@ -1,34 +1,9 @@
-/* 固定画板尺寸：1728 * 1117 */
-.page {
-  position: relative;
-  width: 1728px;
-  height: 1117px;
-  margin: 0 auto;
-  background: var(--bg);
-  overflow: hidden;
-}
-
-/* 2x 截图层：铺满画板且不影响交互 */
-.pageScreenshot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+.container {
   height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* 图表画布：右下角，固定大小 + 内边距 */
-.canvas {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 1516px;
-  height: 999px;
-  /* 顶部不留白，其余边距由 padding 控制为 20 */
-  padding: 0 20px 20px;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 24px;
+  gap: 14px;
 }
 
 .header {
@@ -69,7 +44,10 @@
   gap: 10px;
 }
 
-/* 旧的 main/header 仍保留样式（可能被其他地方复用），但当前页面不再使用 */
+.main {
+  flex: 1;
+  min-height: 0;
+}
 
 .grid :global(.react-grid-item) {
   transition: transform 120ms ease, width 120ms ease, height 120ms ease;
@@ -81,31 +59,3 @@
   transition-duration: 120ms;
 }
 
-.grid {
-  width: 100%;
-  min-height: 100%;
-}
-
-.canvasActions {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  z-index: 1;
-  display: flex;
-  gap: 10px;
-}
-
-.resetBtn {
-  background: var(--panel);
-  box-shadow: var(--shadow);
-}
-
-.themeBtn {
-  background: var(--panel);
-  box-shadow: var(--shadow);
-}
-
-/* react-grid-layout 容器默认可能存在外边距，强制清零以便精确控制到边缘距离 */
-.grid :global(.react-grid-layout) {
-  margin: 0 !important;
-}
