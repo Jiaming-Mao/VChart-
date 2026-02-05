@@ -1,6 +1,6 @@
 import type { IWaterfallChartSpec } from '@visactor/vchart';
 import type { WaterfallDatum } from '@/types/dashboard';
-import { getDataVCategoricalColor, getChartTextColor } from '@/vchart/theme';
+import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
  * 瀑布图 - 创建 Spec（工厂函数模式）
@@ -8,6 +8,8 @@ import { getDataVCategoricalColor, getChartTextColor } from '@/vchart/theme';
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
 export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWaterfallChartSpec {
+  const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+
   return {
     type: 'waterfall',
 
@@ -24,6 +26,64 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
       right: 20,
       bottom: 20,
       left: 20,
+    },
+
+    // ============================================
+    // Tooltip 配置
+    // ============================================
+    tooltip: {
+      // [DEFAULT] 显示提示框
+      visible: true,
+
+      // ============================================
+      // [FIXED] 提示框固定样式 - AI 不可修改
+      // ============================================
+      style: {
+        panel: {
+          // [FIXED] 背景色 - token: bg/float
+          backgroundColor: t['bg/float'],
+          // [FIXED] 边框
+          border: {
+            color: t['border/card'],
+            width: 0.5,
+            radius: 10,
+          },
+          // [FIXED] 阴影
+          shadow: {
+            x: 0,
+            y: 4,
+            blur: 20,
+            spread: 0,
+            color: t['shadow/n900-5pct'],
+          },
+          // [FIXED] 内边距
+          padding: 12,
+        },
+        // [FIXED] 标题标签样式
+        titleLabel: {
+          fontSize: 12,
+          fontWeight: 'bold',
+          fill: t['text/caption'],
+        },
+        // [FIXED] 键名标签样式
+        keyLabel: {
+          fontSize: 12,
+          fill: t['text/caption'],
+        },
+        // [FIXED] 值标签样式
+        valueLabel: {
+          fontSize: 12,
+          fontWeight: 'bold',
+          fill: t['text/title'],
+        },
+        // [FIXED] 形状样式
+        shape: {
+          size: 8,
+          shapeType: 'circle',
+        },
+        // [FIXED] 行间距
+        spaceRow: 6,
+      },
     },
 
     // ============================================
@@ -97,7 +157,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
           visible: true,
           valueType: 'change',
           style: {
-            fill: getChartTextColor(isDark),
+            fill: t['text/title'],
           },
         },
 
@@ -110,8 +170,8 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
             fill: (datum: Record<string, unknown>) => {
               const category = typeof datum.category === 'string' ? datum.category : '';
               const value = typeof datum.value === 'number' ? datum.value : 0;
-              if (category === '总计') return getDataVCategoricalColor(3);
-              return value >= 0 ? getDataVCategoricalColor(1) : getDataVCategoricalColor(2);
+              if (category === '总计') return t['dataV/categorical/3'];
+              return value >= 0 ? t['dataV/categorical/1'] : t['dataV/categorical/2'];
             },
           },
         },

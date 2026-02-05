@@ -1,6 +1,6 @@
 import type { IRoseChartSpec } from '@visactor/vchart';
 import type { RoseDatum } from '@/types/dashboard';
-import { getChartTextColor } from '@/vchart/theme';
+import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
  * 玫瑰图 - 创建 Spec（工厂函数模式）
@@ -8,6 +8,8 @@ import { getChartTextColor } from '@/vchart/theme';
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
 export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpec {
+  const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+
   return {
     type: 'rose',
 
@@ -40,9 +42,68 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
       visible: true,
       position: 'outside',
       style: {
-        fill: getChartTextColor(isDark),
+        fill: t['text/title'],
       },
     },
+
+    // ============================================
+    // Tooltip 配置
+    // ============================================
+    tooltip: {
+      // [DEFAULT] 显示提示框
+      visible: true,
+
+      // ============================================
+      // [FIXED] 提示框固定样式 - AI 不可修改
+      // ============================================
+      style: {
+        panel: {
+          // [FIXED] 背景色 - token: bg/float
+          backgroundColor: t['bg/float'],
+          // [FIXED] 边框
+          border: {
+            color: t['border/card'],
+            width: 0.5,
+            radius: 10,
+          },
+          // [FIXED] 阴影
+          shadow: {
+            x: 0,
+            y: 4,
+            blur: 20,
+            spread: 0,
+            color: t['shadow/n900-5pct'],
+          },
+          // [FIXED] 内边距
+          padding: 12,
+        },
+        // [FIXED] 标题标签样式
+        titleLabel: {
+          fontSize: 12,
+          fontWeight: 'bold',
+          fill: t['text/caption'],
+        },
+        // [FIXED] 键名标签样式
+        keyLabel: {
+          fontSize: 12,
+          fill: t['text/caption'],
+        },
+        // [FIXED] 值标签样式
+        valueLabel: {
+          fontSize: 12,
+          fontWeight: 'bold',
+          fill: t['text/title'],
+        },
+        // [FIXED] 形状样式
+        shape: {
+          size: 8,
+          shapeType: 'circle',
+        },
+        // [FIXED] 行间距
+        spaceRow: 6,
+      },
+    },
+
     // ============================================
     // 图例配置
     // ============================================

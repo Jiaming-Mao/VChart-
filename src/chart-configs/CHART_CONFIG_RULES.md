@@ -89,6 +89,63 @@
 | `legends.pager.handler.preShape` | FIXED | `'triangleUp'` | 上翻页箭头 |
 | `legends.pager.handler.nextShape` | FIXED | `'triangleDown'` | 下翻页箭头 |
 
+### Tooltip（提示框）
+
+提示框配置适用于所有图表。
+
+| 配置项 | 分类 | 默认值 | Token |
+|--------|------|--------|-------|
+| `tooltip.visible` | DEFAULT | `true` | - |
+| `tooltip.style.panel.backgroundColor` | FIXED | - | `bg/float` |
+| `tooltip.style.panel.border.color` | FIXED | - | `border/card` |
+| `tooltip.style.panel.border.width` | FIXED | `0.5` | - |
+| `tooltip.style.panel.border.radius` | FIXED | `10` | - |
+| `tooltip.style.panel.shadow.x` | FIXED | `0` | - |
+| `tooltip.style.panel.shadow.y` | FIXED | `4` | - |
+| `tooltip.style.panel.shadow.blur` | FIXED | `20` | - |
+| `tooltip.style.panel.shadow.spread` | FIXED | `0` | - |
+| `tooltip.style.panel.shadow.color` | FIXED | - | `shadow/n900-5pct` |
+| `tooltip.style.panel.padding` | FIXED | `12` | - |
+| `tooltip.style.titleLabel.fontSize` | FIXED | `12` | - |
+| `tooltip.style.titleLabel.fontWeight` | FIXED | `'bold'` | - |
+| `tooltip.style.titleLabel.fill` | FIXED | - | `text/caption` |
+| `tooltip.style.keyLabel.fontSize` | FIXED | `12` | - |
+| `tooltip.style.keyLabel.fill` | FIXED | - | `text/caption` |
+| `tooltip.style.valueLabel.fontSize` | FIXED | `12` | - |
+| `tooltip.style.valueLabel.fontWeight` | FIXED | `'bold'` | - |
+| `tooltip.style.valueLabel.fill` | FIXED | - | `text/title` |
+| `tooltip.style.shape.size` | FIXED | `8` | - |
+| `tooltip.style.shape.shapeType` | FIXED | `'circle'` | - |
+| `tooltip.style.spaceRow` | FIXED | `6` | - |
+
+### Token 颜色规范
+
+图表配置中使用 `TOKEN_COLORS` 常量来引用颜色，确保 token 名称显性可见。
+
+**使用方式**：
+```typescript
+import { TOKEN_COLORS } from '@/vchart/theme';
+
+const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+// 使用: t['text/title'], t['bg/float'], t['dataV/categorical/1'] 等
+```
+
+**语义色 Token**：
+
+| Token Key | CSS 变量 | 用途 |
+|-----------|----------|------|
+| `text/title` | `--token-text-title` | 标签文字、值文字 |
+| `text/caption` | `--token-text-caption` | 次要文字、tooltip 标题/键名 |
+| `bg/float` | `--token-bg-float` | tooltip 背景 |
+| `border/card` | `--token-line-border-card` | tooltip 边框 |
+| `shadow/n900-5pct` | `--token-transparent-neutral-n900-5pct` | tooltip 阴影 |
+
+**DataV 调色板 Token**：
+
+| Token Key | CSS 变量 | 用途 |
+|-----------|----------|------|
+| `dataV/categorical/1` ~ `dataV/categorical/14` | `--token-dataV-categorical-1` ~ `-14` | 图表系列颜色 |
+
 ---
 
 ## 五、各图表配置分类
@@ -156,7 +213,11 @@
 新增图表配置时，请按以下格式添加注释：
 
 ```typescript
+import { TOKEN_COLORS } from '@/vchart/theme';
+
 export function createXxxSpec(data: XxxDatum[], isDark = false): IXxxChartSpec {
+  const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+
   return {
     type: 'xxx',
     data: [{ id: 'data', values: data }],
@@ -172,8 +233,22 @@ export function createXxxSpec(data: XxxDatum[], isDark = false): IXxxChartSpec {
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
-    // [DEFAULT] 配置说明
-    tooltip: { visible: true },
+    // [DEFAULT] 标签配置
+    label: {
+      style: {
+        fill: t['text/title'],  // 使用 TOKEN_COLORS
+      },
+    },
+
+    // ============================================
+    // Tooltip 配置
+    // ============================================
+    tooltip: {
+      // [DEFAULT] 显示提示框
+      visible: true,
+      // [FIXED] 提示框样式（见通用组件配置）
+      style: { /* ... */ },
+    },
   };
 }
 ```

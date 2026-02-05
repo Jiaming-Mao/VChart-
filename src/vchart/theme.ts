@@ -1,80 +1,105 @@
 import { ThemeManager } from '@visactor/vchart';
 
-/**
- * 从 CSS 变量读取颜色值
- * @param varName - CSS 变量名（带 -- 前缀）
- * @param fallback - 回退值（用于 SSR 或变量未定义时）
- */
-function resolveCssVar(varName: string, fallback: string): string {
-  if (typeof window === 'undefined') return fallback;
-  const v = window.getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-  return v || fallback;
-}
+// ============================================
+// Token 颜色常量（与 CSS 变量保持同步）
+// ============================================
+export const TOKEN_COLORS = {
+  light: {
+    // 语义色
+    'text/title': '#1f2329',
+    'text/caption': '#646a73',
+    'bg/float': '#ffffff',
+    'border/card': '#dee0e3',
+    'shadow/n900-5pct': 'rgba(31, 35, 41, 0.05)',
+    // DataV 14 色调色板
+    'dataV/categorical/1': '#3370EB',
+    'dataV/categorical/2': '#1BCEBF',
+    'dataV/categorical/3': '#FFC60A',
+    'dataV/categorical/4': '#ED6D0C',
+    'dataV/categorical/5': '#DCA1E4',
+    'dataV/categorical/6': '#25B2E5',
+    'dataV/categorical/7': '#6DCDEB',
+    'dataV/categorical/8': '#288FCB',
+    'dataV/categorical/9': '#94B5F5',
+    'dataV/categorical/10': '#8F61D1',
+    'dataV/categorical/11': '#BF78E9',
+    'dataV/categorical/12': '#008280',
+    'dataV/categorical/13': '#27AD8E',
+    'dataV/categorical/14': '#7BC335',
+  },
+  dark: {
+    // 语义色
+    'text/title': '#ebebeb',
+    'text/caption': '#a6a6a6',
+    'bg/float': '#292929',
+    'border/card': 'rgba(235, 235, 235, 0.15)',
+    'shadow/n900-5pct': 'rgba(235, 235, 235, 0.05)',
+    // DataV 14 色调色板（深色模式下相同）
+    'dataV/categorical/1': '#3370EB',
+    'dataV/categorical/2': '#1BCEBF',
+    'dataV/categorical/3': '#FFC60A',
+    'dataV/categorical/4': '#ED6D0C',
+    'dataV/categorical/5': '#DCA1E4',
+    'dataV/categorical/6': '#25B2E5',
+    'dataV/categorical/7': '#6DCDEB',
+    'dataV/categorical/8': '#288FCB',
+    'dataV/categorical/9': '#94B5F5',
+    'dataV/categorical/10': '#8F61D1',
+    'dataV/categorical/11': '#BF78E9',
+    'dataV/categorical/12': '#008280',
+    'dataV/categorical/13': '#27AD8E',
+    'dataV/categorical/14': '#7BC335',
+  },
+} as const;
+
+export type TokenColorKey = keyof typeof TOKEN_COLORS.light;
+
+// ============================================
+// 废弃函数（保留向后兼容，建议使用 TOKEN_COLORS）
+// ============================================
 
 /**
  * 获取图表文本颜色
- * 
- * 直接根据 isDark 参数返回对应的文本颜色。
- * 
- * 注意：不使用 CSS 变量是因为存在时序问题 —— React 状态更新后子组件
- * 立即重新渲染，但 useEffect 中的 DOM 更新（data-theme 属性）是异步的，
- * 导致 getComputedStyle 读取到的仍是旧主题的 CSS 变量值。
- * 
+ *
+ * @deprecated 请使用 `TOKEN_COLORS[isDark ? 'dark' : 'light']['text/title']` 代替
  * @param isDark - 是否深色模式
  * @returns 当前主题的文本颜色
  */
 export function getChartTextColor(isDark: boolean): string {
-  // 颜色值与 _generated-light.css / _generated-dark.css 中的 --token-text-title 保持一致
-  return isDark ? '#ebebeb' : '#1f2329';
-}
-
-/**
- * DataV 图表调色板配置
- * 
- * 颜色定义在 _generated-*.css 中（--token-dataV-categorical-1 到 -14）
- * 这里只保留 fallback 值用于 CSS 变量未加载时
- */
-const DATAV_CATEGORICAL_FALLBACKS = [
-  '#3370EB', '#1BCEBF', '#FFC60A', '#ED6D0C',
-  '#DCA1E4', '#25B2E5', '#6DCDEB', '#288FCB',
-  '#94B5F5', '#8F61D1', '#BF78E9', '#008280',
-  '#27AD8E', '#7BC335',
-] as const;
-
-let cachedPalette: string[] | null = null;
-let cachedThemeKey: string | null = null;
-
-/**
- * 获取 DataV 14 色调色板
- * 
- * 从 CSS 变量读取颜色，支持主题切换时自动更新缓存。
- */
-export function getDataVCategoricalPalette14(): string[] {
-  const themeKey =
-    typeof window === 'undefined' ? 'ssr' : document.documentElement.getAttribute('data-theme') || 'none';
-
-  if (cachedPalette && cachedThemeKey === themeKey) return cachedPalette;
-
-  const palette = DATAV_CATEGORICAL_FALLBACKS.map((fallback, idx) => 
-    resolveCssVar(`--token-dataV-categorical-${idx + 1}`, fallback)
-  );
-  cachedPalette = palette;
-  cachedThemeKey = themeKey;
-  return palette;
+  return TOKEN_COLORS[isDark ? 'dark' : 'light']['text/title'];
 }
 
 /**
  * 获取 DataV 调色板中的单个颜色
+ *
+ * @deprecated 请使用 `TOKEN_COLORS[isDark ? 'dark' : 'light']['dataV/categorical/N']` 代替
  * @param index1Based - 1-14 的颜色索引
  */
 export function getDataVCategoricalColor(index1Based: number): string {
-  const idx = Math.max(1, Math.min(14, Math.floor(index1Based))) - 1;
-  return getDataVCategoricalPalette14()[idx];
+  const idx = Math.max(1, Math.min(14, Math.floor(index1Based)));
+  const key = `dataV/categorical/${idx}` as TokenColorKey;
+  return TOKEN_COLORS.light[key]; // DataV 颜色在 light/dark 下相同
 }
 
 /**
+ * 获取 DataV 14 色调色板数组
+ *
+ * @deprecated 内部使用，请使用 TOKEN_COLORS 中的 dataV/categorical/* 代替
+ */
+export function getDataVCategoricalPalette14(): string[] {
+  return Array.from({ length: 14 }, (_, i) => {
+    const key = `dataV/categorical/${i + 1}` as TokenColorKey;
+    return TOKEN_COLORS.light[key];
+  });
+}
+
+// ============================================
+// VChart 主题注册
+// ============================================
+
+/**
  * 注册 VChart 主题
- * 
+ *
  * 覆盖 VChart 内置的 light/dark 主题：
  * - 注入 DataV 调色板
  * - 设置透明背景（让图表背景跟随卡片颜色）
