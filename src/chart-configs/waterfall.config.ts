@@ -1,5 +1,6 @@
 import type { IWaterfallChartSpec } from '@visactor/vchart';
 import type { WaterfallDatum } from '@/types/dashboard';
+import { getDataVCategoricalColor } from '@/vchart/theme';
 
 /**
  * 瀑布图 - 创建 Spec（工厂函数模式）
@@ -40,8 +41,12 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
             fill: (datum: Record<string, unknown>) => {
               const category = typeof datum.category === 'string' ? datum.category : '';
               const value = typeof datum.value === 'number' ? datum.value : 0;
-              if (category === '总计') return '#3b82f6';
-              return value >= 0 ? '#22c55e' : '#ef4444';
+              // mapping:
+              // - 正值：色板 1
+              // - 负值：色板 2
+              // - 总计：色板 3
+              if (category === '总计') return getDataVCategoricalColor(3);
+              return value >= 0 ? getDataVCategoricalColor(1) : getDataVCategoricalColor(2);
             },
           },
         },

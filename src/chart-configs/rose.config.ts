@@ -10,14 +10,10 @@ import type { RoseDatum } from '@/types/dashboard';
  * - label / legends: 标签与图例样式
  */
 export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpec {
-  const color = ['#3b82f6', '#22c55e', '#f97316', '#a855f7', '#14b8a6', '#ef4444'];
-
   return {
     type: 'rose',
 
     data: [{ id: 'data', values: data }],
-
-    color: [...color],
 
     categoryField: 'category',
     valueField: 'value',

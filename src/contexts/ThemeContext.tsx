@@ -2,6 +2,7 @@
 
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import { ThemeManager } from '@visactor/vchart';
+import { registerDataVThemes } from '@/vchart/theme';
 
 export type ThemeMode = 'light' | 'dark';
 
@@ -55,6 +56,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     try {
+      // Ensure palette is registered after DOM theme is applied
+      registerDataVThemes();
       ThemeManager.setCurrentTheme(theme);
     } catch {
       // ignore
