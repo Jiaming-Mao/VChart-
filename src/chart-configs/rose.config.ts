@@ -5,10 +5,7 @@ import { getChartTextColor } from '@/vchart/theme';
 /**
  * 玫瑰图 - 创建 Spec（工厂函数模式）
  *
- * 🎨 可修改项：
- * - color: 调色板（验收：修改这里无需改组件代码）
- * - outerRadius: 预留空间防止 Label 溢出
- * - label / legends: 标签与图例样式
+ * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
 export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpec {
   return {
@@ -20,9 +17,19 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     valueField: 'value',
     seriesField: 'category',
 
-    outerRadius: 0.75,
-    innerRadius: 0,
+    // ============================================
+    // [FIXED] 固定样式配置 - AI 不可修改
+    // ============================================
+    // （当前无固定样式配置）
 
+    // ============================================
+    // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
+    // ============================================
+    // [DEFAULT] 外半径
+    outerRadius: 0.75,
+    // [DEFAULT] 内半径
+    innerRadius: 0,
+    // [DEFAULT] 标签配置
     label: {
       visible: true,
       position: 'outside',
@@ -30,7 +37,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
         fill: getChartTextColor(isDark),
       },
     },
-
+    // [DEFAULT] 图例配置
     legends: {
       visible: true,
       orient: 'right',

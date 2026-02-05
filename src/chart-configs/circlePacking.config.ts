@@ -5,10 +5,7 @@ import { getChartTextColor } from '@/vchart/theme';
 /**
  * 圆形打包图 - 创建 Spec（工厂函数模式）
  *
- * 🎨 可修改项：
- * - color: 调色板
- * - label: 标签样式
- * - layoutPadding: 气泡间距
+ * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
 export function createCirclePackingSpec(
   data: CirclePackingBubbleDatum[],
@@ -24,38 +21,43 @@ export function createCirclePackingSpec(
       },
     ],
 
-    // 参考官方 demo：气泡图使用一维数组数据（不要用树）
-    // 气泡间距（series 层字段，但 demo 支持写在 chart spec 上）
-    layoutPadding: 5,
+    categoryField: 'name',
+    valueField: 'value',
 
+    // ============================================
+    // [FIXED] 固定样式配置 - AI 不可修改
+    // ============================================
+    // [FIXED] 气泡间距
+    layoutPadding: 5,
+    // [FIXED] 入场动画缓动
+    animationEnter: {
+      easing: 'cubicInOut',
+    },
+    // [FIXED] 退场动画缓动
+    animationExit: {
+      easing: 'cubicInOut',
+    },
+    // [FIXED] 更新动画缓动
+    animationUpdate: {
+      easing: 'cubicInOut',
+    },
+
+    // ============================================
+    // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
+    // ============================================
+    // [DEFAULT] 提示框显示
     tooltip: {
       visible: true,
     },
-
-    // label 配置（先保证渲染稳定；需要按层级控制显示再加 visible 回调）
+    // [DEFAULT] 标签样式
     label: {
       style: {
         fontSize: 10,
         fill: getChartTextColor(isDark),
       },
     },
-
-    // 层级配置
-    categoryField: 'name',
-    valueField: 'value',
-
-    // 钻取交互（可选）
+    // [DEFAULT] 钻取交互
     drill: true,
-
-    animationEnter: {
-      easing: 'cubicInOut',
-    },
-    animationExit: {
-      easing: 'cubicInOut',
-    },
-    animationUpdate: {
-      easing: 'cubicInOut',
-    },
   };
 }
 
