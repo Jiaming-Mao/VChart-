@@ -18,6 +18,8 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
     categoryField: 'name',
     valueField: 'value',
     drillField: 'name',
+    // [DEFAULT] 按产品线分类着色
+    seriesField: 'category',
 
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改

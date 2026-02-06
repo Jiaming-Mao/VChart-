@@ -19,6 +19,15 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
     yField: 'value',
 
     // ============================================
+    // [FIXED] 瀑布图色板 - 按 [increase, decrease, total] 顺序
+    // ============================================
+    color: [
+      t['dataV/categorical/1'], // 正值（increase）- 蓝色
+      t['dataV/categorical/2'], // 负值（decrease）- 绿色
+      t['dataV/categorical/3'], // 合计（total）- 黄色
+    ],
+
+    // ============================================
     // [FIXED] 图表内边距 - AI 不可修改
     // ============================================
     padding: {
@@ -96,6 +105,19 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
       orient: 'top',
       // [DEFAULT] 图例对齐 - 居左
       position: 'start',
+      // [DEFAULT] 自定义图例项（中文名称）
+      data: (items) =>
+        items.map((item) => ({
+          ...item,
+          label:
+            item.label === 'increase'
+              ? '增加'
+              : item.label === 'decrease'
+                ? '减少'
+                : item.label === 'total'
+                  ? '合计'
+                  : item.label,
+        })),
 
       // ============================================
       // [FIXED] 图例固定样式 - AI 不可修改
@@ -147,10 +169,10 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         // ============================================
         // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
         // ============================================
-        // [DEFAULT] 总计配置
+        // [DEFAULT] 总计/小计配置（数据中 total: true 的项显示为合计柱）
         total: {
-          type: 'end',
-          text: '总计',
+          type: 'field',
+          tagField: 'total',
         },
         // [DEFAULT] 堆叠标签配置
         stackLabel: {
@@ -161,20 +183,6 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
           },
         },
 
-        // ============================================
-        // [FIXED] 固定样式配置 - AI 不可修改
-        // ============================================
-        // [FIXED] 颜色映射逻辑（正值=色板1, 负值=色板2, 总计=色板3）
-        bar: {
-          style: {
-            fill: (datum: Record<string, unknown>) => {
-              const category = typeof datum.category === 'string' ? datum.category : '';
-              const value = typeof datum.value === 'number' ? datum.value : 0;
-              if (category === '总计') return t['dataV/categorical/3'];
-              return value >= 0 ? t['dataV/categorical/1'] : t['dataV/categorical/2'];
-            },
-          },
-        },
       },
     ],
   };

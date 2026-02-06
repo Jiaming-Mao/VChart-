@@ -25,6 +25,8 @@ export function createCirclePackingSpec(
 
     categoryField: 'name',
     valueField: 'value',
+    // 按产品线着色，图例显示产品线
+    seriesField: 'productLine',
 
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改
@@ -73,7 +75,7 @@ export function createCirclePackingSpec(
           // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
           const radius = datum?.radius || 0;
           const text = datum?.name || '';
-          const textWidth = text.length * 6; // 估算文本宽度（每字符约 6px）
+          const textWidth = text.length * 8; // 估算文本宽度（每字符约 6px）
           // 标签宽度小于直径的 80% 时显示，否则透明
           return textWidth < radius * 1.6 ? 1 : 0;
         },
@@ -158,8 +160,8 @@ export function createCirclePackingSpec(
       maxRow: 1,
       // [FIXED] 自动分页
       autoPage: true,
-      // [FIXED] 图例与图表间距 40
-      padding: { bottom: 40 },
+      // [FIXED] 图例与图表间距 8
+      padding: { bottom: 8 },
       // [FIXED] 图例项配置
       item: {
         shape: {
@@ -196,7 +198,7 @@ export function createCirclePackingSpec(
 
 // 导出数据结构说明（供参考）
 export const dataStructureExample = [
-  { name: 'bubble-1', value: 1 },
-  { name: 'bubble-2', value: 2 },
+  { name: 'bubble-1', value: 1, productLine: '系列A' },
+  { name: 'bubble-2', value: 2, productLine: '系列B' },
 ];
 

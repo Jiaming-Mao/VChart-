@@ -17,11 +17,15 @@ export interface CirclePackingNode {
 export interface CirclePackingBubbleDatum {
   name: string;
   value: number;
+  /** 产品线，用于按系列着色（图例） */
+  productLine?: string;
 }
 
 export interface WaterfallDatum {
   category: string;
   value: number;
+  /** 是否为合计/小计（中间值、最终值），用于瀑布图 total 类型为 field 时 */
+  total?: boolean;
 }
 
 export interface RoseDatum {
@@ -48,5 +52,7 @@ export interface TreemapNode {
   name: string;
   value?: number;
   children?: TreemapNode[];
+  /** 产品线分类，用于按系列着色 */
+  category?: string;
 }
 

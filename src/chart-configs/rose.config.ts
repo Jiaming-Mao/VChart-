@@ -34,7 +34,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
     // [DEFAULT] 外半径
-    outerRadius: 0.75,
+    outerRadius: 0.8,
     // [DEFAULT] 内半径
     innerRadius: 0,
 

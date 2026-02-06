@@ -1,25 +1,16 @@
 import type { CirclePackingBubbleDatum } from '@/types/dashboard';
 
-// 气泡图 demo 方式：一维数组（不要用树结构）
+// 数据来源：AI Block 效果评测 气泡图 (1).csv
+// 颜色按产品线，值为年度营收（百万美元）
 export const circlePackingData: CirclePackingBubbleDatum[] = [
-  { name: 'bubble-1', value: 1 },
-  { name: 'bubble-2', value: 2 },
-  { name: 'bubble-3', value: 3 },
-  { name: 'bubble-4', value: 4 },
-  { name: 'bubble-5', value: 5 },
-  { name: 'bubble-6', value: 6 },
-  { name: 'bubble-7', value: 7 },
-  { name: 'bubble-8', value: 8 },
-  { name: 'bubble-9', value: 9 },
-  { name: 'bubble-10', value: 10 },
-  { name: 'bubble-11', value: 11 },
-  { name: 'bubble-12', value: 12 },
-  { name: 'bubble-13', value: 13 },
-  { name: 'bubble-14', value: 14 },
-  { name: 'bubble-15', value: 15 },
-  { name: 'bubble-16', value: 16 },
-  { name: 'bubble-17', value: 17 },
-  { name: 'bubble-18', value: 18 },
-  { name: 'bubble-19', value: 19 },
+  { name: '云服务平台', value: 180, productLine: '软件与服务' },
+  { name: '智能手机 A', value: 320, productLine: '硬件设备' },
+  { name: '智能手表 B', value: 95, productLine: '硬件设备' },
+  { name: '办公软件套件', value: 150, productLine: '软件与服务' },
+  { name: '智能家居 C', value: 60, productLine: '硬件设备' },
+  { name: '大数据分析工具', value: 210, productLine: '软件与服务' },
+  { name: '游戏主机 D', value: 250, productLine: '硬件设备' },
+  { name: '支付系统 E', value: 75, productLine: '软件与服务' },
+  { name: '笔记本电脑 F', value: 120, productLine: '硬件设备' },
+  { name: '芯片 G', value: 140, productLine: '硬件设备' },
 ];
-
