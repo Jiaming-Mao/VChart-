@@ -1,6 +1,6 @@
 import type { ISankeyChartSpec } from '@visactor/vchart';
 import type { SankeyData } from '@/types/dashboard';
-import { TOKEN_COLORS } from '@/vchart/theme';
+import { TOKEN_COLORS, getDataVCategoricalPalette14 } from '@/vchart/theme';
 
 /**
  * 桑基图 - 创建 Spec（工厂函数模式）
@@ -18,6 +18,8 @@ export function createSankeySpec(
   isDark = false
 ): ISankeyChartSpec & { padding?: { top?: number; right?: number; bottom?: number; left?: number } } {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+  // DataV 14 色调色板，用于 link 渐变
+  const palette = getDataVCategoricalPalette14();
 
   return {
     type: 'sankey',
@@ -44,16 +46,40 @@ export function createSankeySpec(
       bottom: 20,
       left: 20,
     },
-    // [FIXED] 节点透明度
+    // [FIXED] 节点样式
+    nodeWidth: 8,
     node: {
       style: {
-        fillOpacity: 0.9,
+        fillOpacity: 1.0,
+        // [DEFAULT] 节点圆角
+        cornerRadius: 2,
+        
       },
     },
-    // [FIXED] 连接线透明度
+    // [FIXED] 连接线样式
     link: {
       style: {
-        fillOpacity: 0.3,
+        fillOpacity: 0.15,
+        // [DEFAULT] 连接线渐变填充（从源节点颜色到目标节点颜色）
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        fill: ((datum: any) => {
+          // 获取源节点和目标节点在调色板中的颜色
+          const sourceIndex = typeof datum.source === 'number' ? datum.source : 0;
+          const targetIndex = typeof datum.target === 'number' ? datum.target : 0;
+          const sourceColor = palette[sourceIndex % palette.length];
+          const targetColor = palette[targetIndex % palette.length];
+          return {
+            gradient: 'linear',
+            x0: 0,
+            y0: 0.5,
+            x1: 1,
+            y1: 0.5,
+            stops: [
+              { offset: 0, color: sourceColor },
+              { offset: 1, color: targetColor },
+            ],
+          };
+        }) as any,
       },
     },
 
@@ -63,8 +89,12 @@ export function createSankeySpec(
     // [DEFAULT] 标签配置
     label: {
       visible: true,
+      // [DEFAULT] 标签距离节点距离
+      offset: 8,
       style: {
-        fill: t['text/title'],
+        fill: t['text/caption'],
+        // [DEFAULT] 标签字号
+        fontSize: 12,
       },
     },
 
