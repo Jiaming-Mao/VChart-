@@ -10,11 +10,15 @@ export const Dashboard: React.FC = () => {
   const { layout, handleLayoutChange, resetLayout } = useLayoutPersist(DEFAULT_LAYOUT);
 
   // 背景截图：light / dark
-  const screenshotSrc = theme === 'dark' ? '/dark@2x.png' : '/light@2x.png';
+  // 注意：GitHub Pages 会部署在子路径（base）下，使用 BASE_URL 确保资源路径正确
+  const screenshotSrc =
+    theme === 'dark'
+      ? `${import.meta.env.BASE_URL}dark@2x.png`
+      : `${import.meta.env.BASE_URL}light@2x.png`;
 
   return (
     <div className={styles.page}>
-      {/* 放置 2x 截图（请将文件放到 public/page@2x.png） */}
+      {/* 放置 2x 截图（文件位于 public/ 目录） */}
       <img className={styles.pageScreenshot} src={screenshotSrc} alt="" />
 
       {/* 右下角图表画布：1516*999，内 padding 20px */}

@@ -56,7 +56,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
 
     // [DEFAULT] 标签配置
     label: {
-      visible: true,
+      visible: false,
       position: 'outside',
       style: {
         fontSize: 12,

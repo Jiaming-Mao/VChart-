@@ -38,6 +38,22 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
     },
 
     // ============================================
+    // [FIXED] 坐标轴配置 - AI 不可修改
+    // ============================================
+    axes: [
+      {
+        orient: 'bottom',
+        type: 'band',
+        // [FIXED] paddingOuter: 柱组与图表边缘的间距比例
+        // 注：当比例计算结果 paddingOuter 绝对值间距 < 2px 时，建议设为 0
+        // 当前设为 0.075，若柱宽过小导致间距 < 2px，可手动调整为 0
+        paddingOuter: 0.075,
+        // [FIXED] paddingInner: 柱组与柱组之间的间距比例
+        paddingInner: 0.45,
+      },
+    ],
+
+    // ============================================
     // Tooltip 配置
     // ============================================
     tooltip: {
@@ -167,6 +183,19 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         yField: 'value',
 
         // ============================================
+        // [FIXED] 柱子样式配置 - AI 不可修改
+        // ============================================
+        // [FIXED] 柱子最大宽度 52px
+        barMaxWidth: 52,
+        // [FIXED] 柱子样式
+        bar: {
+          style: {
+            // [FIXED] 柱子圆角 - 根据柱宽自适应
+            cornerRadius: 6,
+          },
+        },
+
+        // ============================================
         // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
         // ============================================
         // [DEFAULT] 总计/小计配置（数据中 total: true 的项显示为合计柱）
@@ -176,6 +205,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         },
         // [DEFAULT] 堆叠标签配置
         stackLabel: {
+          //position: 'max',
           visible: true,
           valueType: 'change',
           style: {

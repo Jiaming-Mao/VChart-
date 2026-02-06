@@ -35,13 +35,20 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
+    // [DEFAULT] 间距配置：分组间距 8，方块间距 2
+    gapWidth: [0, 4, 2],
+    // [DEFAULT] 叶子节点样式
+    leaf: {
+      style: {
+        cornerRadius: 2,
+      },
+    },
     // [DEFAULT] 标签配置
     label: {
       visible: true,
-      smartInvert: true,
       style: {
         fontSize: 12,
-        fill: t['text/title'],
+        fill: t['static/white'],
       },
     },
     // [DEFAULT] 钻取交互

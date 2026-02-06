@@ -59,18 +59,18 @@ export function createCirclePackingSpec(
     // [DEFAULT] 标签样式
     label: {
       // [DEFAULT] 智能反色 - 根据气泡颜色自动调整标签颜色
-      // @ts-expect-error smartInvert 是 VChart 运行时支持的属性，但类型定义中尚未包含
-      smartInvert: true,
+      //smartInvert: true,
       style: {
         fontSize: 10,
         fill: t['static/white'],
         // [DEFAULT] 标签无描边
-        stroke: 'transparent',
+        stroke: 'transparent',        
         // [DEFAULT] 标签垂直居中
         textBaseline: 'middle',
         // [DEFAULT] 标签超出气泡范围则隐藏（通过透明度控制）
         // 使用回调函数根据 value 和标签文本长度判断是否显示
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         fillOpacity: (datum: any) => {
           // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
           const radius = datum?.radius || 0;

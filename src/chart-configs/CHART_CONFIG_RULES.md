@@ -203,6 +203,10 @@ const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
 | 配置项 | 分类 | 默认值 | 说明 |
 |--------|------|--------|------|
 | `bar.style.fill` | FIXED | 颜色映射函数 | 正值=色板1, 负值=色板2, 总计=色板3 |
+| `bar.style.cornerRadius` | FIXED | 回调函数 | 柱子圆角（根据柱宽自适应：≤8px全圆角, <12px=2px, <18px=3px, <26px=4px, ≥26px=6px） |
+| `barMaxWidth` | FIXED | `52` | 柱子最大宽度（图表拉伸时柱宽增大到 52px 后不再变化） |
+| `axes[0].paddingOuter` | FIXED | `0.075` | 柱组与边缘间距比例（若柱宽过小导致间距 <2px，可手动调整为 0） |
+| `axes[0].paddingInner` | FIXED | `0.45` | 柱组与柱组之间的间距比例 |
 | `total.type` | DEFAULT | `'end'` | 总计位置 |
 | `total.text` | DEFAULT | `'总计'` | 总计文案 |
 | `stackLabel.visible` | DEFAULT | `true` | 堆叠标签显示 |
