@@ -161,7 +161,7 @@ export function createSankeySpec(
     // ============================================
     legends: {
       // [DEFAULT] 图例显示
-      visible: false,
+      visible: true,
       // [DEFAULT] 图例位置 - 居顶
       orient: 'top',
       // [DEFAULT] 图例对齐 - 居左

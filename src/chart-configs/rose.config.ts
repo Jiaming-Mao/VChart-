@@ -34,7 +34,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
     // [DEFAULT] 外半径
-    outerRadius: 0.8,
+    outerRadius: 0.75,
     // [DEFAULT] 内半径
     innerRadius: 0,
 
@@ -54,26 +54,32 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
       },
     },
 
-    // [DEFAULT] 标签配置
-    label: {
-      visible: false,
-      position: 'outside',
-      style: {
-        fontSize: 12,
-        fill: t['text/title'],
-      },
-      // [DEFAULT] 引导线配置
-      line: {
-        visible: true,
-        style: {
-          stroke: t['border/line-divider'],
+    // [DEFAULT] 标签配置（放在 series 内确保生效，玫瑰图不会自动合并顶层 label 到系列）
+    series: [
+      {
+        type: 'rose',
+        categoryField: 'category',
+        valueField: 'value',
+        label: {
+          visible: true,
+          position: 'outside',
+          showRule: 'all',
+          style: {
+            fontSize: 12,
+            fill: t['text/title'],
+          },
+          line: {
+            visible: true,
+            style: {
+              stroke: t['border/line-divider'],
+            },
+          },
+          layout: {
+            align: 'edge',
+          },
         },
       },
-      // [DEFAULT] 标签布局配置 - 两侧对齐
-      layout: {
-        align: 'edge',
-      },
-    },
+    ],
 
     // ============================================
     // Tooltip 配置

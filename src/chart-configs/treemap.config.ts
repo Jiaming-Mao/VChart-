@@ -9,6 +9,7 @@ import { TOKEN_COLORS } from '@/vchart/theme';
  */
 export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemapChartSpec {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+  const pad = 6;
 
   return {
     type: 'treemap',
@@ -49,6 +50,9 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
       style: {
         fontSize: 12,
         fill: t['static/white'],
+        textAlign: 'center',
+        maxLineWidth: (d: any) => Math.max(0, (d.x1 - d.x0) - pad * 2),
+        ellipsis: '...',
       },
     },
     // [DEFAULT] 钻取交互

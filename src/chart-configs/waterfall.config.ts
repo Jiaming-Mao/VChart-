@@ -10,6 +10,35 @@ import { TOKEN_COLORS } from '@/vchart/theme';
 export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWaterfallChartSpec {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
 
+  // 计算 Y 轴最大值，预留约 8% 顶部空间
+  const maxAcc = (() => {
+    let acc = 0;
+    let m = 0;
+    for (const d of data) {
+      if (d.total) acc = Number(d.value) || 0;
+      else acc += Number(d.value) || 0;
+      m = Math.max(m, acc);
+    }
+    return m;
+  })();
+  const yMax = Math.ceil(maxAcc * 1.08);
+
+  // 标签/样式使用的柱子颜色（与瀑布图色板 [increase, decrease, total] 保持一致）
+  // 注：stackLabel 的 datum 不是原始 WaterfallDatum，而是瀑布图内部的「累计数据」
+  // - total 用 isTotal 标识
+  // - 正负可用 end - start 表示本段增量
+  const getWaterfallBarColor = (d: any) => {
+    if (d?.total || d?.isTotal) return t['dataV/categorical/3'];
+
+    const start = Number(d?.start);
+    const end = Number(d?.end);
+    if (Number.isFinite(start) && Number.isFinite(end)) {
+      return end - start >= 0 ? t['dataV/categorical/1'] : t['dataV/categorical/2'];
+    }
+
+    return (Number(d?.value) || 0) >= 0 ? t['dataV/categorical/1'] : t['dataV/categorical/2'];
+  };
+
   return {
     type: 'waterfall',
 
@@ -51,6 +80,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         // [FIXED] paddingInner: 柱组与柱组之间的间距比例
         paddingInner: 0.45,
       },
+      { orient: 'left', type: 'linear', min: 0, max: yMax },
     ],
 
     // ============================================
@@ -143,7 +173,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
       // [FIXED] 自动分页
       autoPage: true,
       // [FIXED] 图例与图表间距 16
-      padding: { bottom: 16 },
+      padding: { bottom: 8 },
       // [FIXED] 图例项配置
       item: {
         shape: {
@@ -203,13 +233,22 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
           type: 'field',
           tagField: 'total',
         },
+        // [DEFAULT] 去掉柱子之间的连接线（leaderLine）
+        leaderLine: {
+          style: {
+            stroke: t['border/line-divider'],
+          },
+        },
         // [DEFAULT] 堆叠标签配置
         stackLabel: {
           //position: 'max',
           visible: true,
+          offset: 8,
           valueType: 'change',
           style: {
-            fill: t['text/title'],
+            fontSize: 12,
+            // 标签颜色跟随柱子颜色：正值=色板1, 负值=色板2, 总计=色板3
+            fill: (datum: any) => getWaterfallBarColor(datum),
           },
         },
 
