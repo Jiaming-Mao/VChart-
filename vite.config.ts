@@ -4,6 +4,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages 部署在 https://<user>.github.io/<repo>/
+  base: '/VChart-/',
   plugins: [react()],
   resolve: {
     alias: {
