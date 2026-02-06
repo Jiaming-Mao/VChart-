@@ -37,7 +37,7 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
     // [DEFAULT] 间距配置：分组间距 8，方块间距 2
-    gapWidth: [0, 4, 2],
+    gapWidth: [8, 4, 2],
     // [DEFAULT] 叶子节点样式
     leaf: {
       style: {
@@ -54,12 +54,6 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
         maxLineWidth: (d: any) => Math.max(0, (d.x1 - d.x0) - pad * 2),
         ellipsis: '...',
       },
-    },
-    // [DEFAULT] 钻取交互
-    drill: true,
-    // [DEFAULT] 非叶节点显示
-    nonLeaf: {
-      visible: false,
     },
 
     // ============================================

@@ -34,9 +34,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
     // [DEFAULT] 外半径
-    outerRadius: 0.75,
-    // [DEFAULT] 内半径
-    innerRadius: 0,
+
 
     // [DEFAULT] 扇形样式配置
     rose: {
@@ -46,12 +44,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
         // [DEFAULT] 边框宽度 2px
         lineWidth: 2,
       },
-      state: {
-        // [DEFAULT] hover 状态 - 无变化
-        hover: {
-          fillOpacity: 1,
-        },
-      },
+
     },
 
     // [DEFAULT] 标签配置（放在 series 内确保生效，玫瑰图不会自动合并顶层 label 到系列）
@@ -63,7 +56,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
         label: {
           visible: true,
           position: 'outside',
-          showRule: 'all',
+
           style: {
             fontSize: 12,
             fill: t['text/title'],

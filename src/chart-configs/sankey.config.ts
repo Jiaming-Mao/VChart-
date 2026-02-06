@@ -50,7 +50,6 @@ export function createSankeySpec(
     nodeWidth: 8,
     node: {
       style: {
-        fillOpacity: 1.0,
         // [DEFAULT] 节点圆角
         cornerRadius: 2,
         

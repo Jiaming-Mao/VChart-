@@ -39,19 +39,6 @@ export function createCirclePackingSpec(
       left: 20,
     },
     // [FIXED] 气泡间距
-    layoutPadding: 5,
-    // [FIXED] 入场动画缓动
-    animationEnter: {
-      easing: 'cubicInOut',
-    },
-    // [FIXED] 退场动画缓动
-    animationExit: {
-      easing: 'cubicInOut',
-    },
-    // [FIXED] 更新动画缓动
-    animationUpdate: {
-      easing: 'cubicInOut',
-    },
 
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
@@ -61,7 +48,8 @@ export function createCirclePackingSpec(
       // [DEFAULT] 智能反色 - 根据气泡颜色自动调整标签颜色
       //smartInvert: true,
       style: {
-        fontSize: 10,
+
+        fontSize: 12,
         fill: t['static/white'],
         // [DEFAULT] 标签无描边
         stroke: 'transparent',        
@@ -75,7 +63,7 @@ export function createCirclePackingSpec(
           // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
           const radius = datum?.radius || 0;
           const text = datum?.name || '';
-          const textWidth = text.length * 8; // 估算文本宽度（每字符约 6px）
+          const textWidth = text.length * 10; // 估算文本宽度（每字符约 6px）
           // 标签宽度小于直径的 80% 时显示，否则透明
           return textWidth < radius * 1.6 ? 1 : 0;
         },
@@ -139,8 +127,7 @@ export function createCirclePackingSpec(
         spaceRow: 6,
       },
     },
-    // [DEFAULT] 钻取交互
-    drill: true,
+
 
     // ============================================
     // 图例配置
