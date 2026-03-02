@@ -50,7 +50,7 @@ export function createCirclePackingSpec(
       style: {
 
         fontSize: 12,
-        fill: t['static/white'],
+        fill: t['bg/body'],
         // [DEFAULT] 标签无描边
         stroke: 'transparent',        
         // [DEFAULT] 标签垂直居中
@@ -58,7 +58,7 @@ export function createCirclePackingSpec(
         // [DEFAULT] 标签超出气泡范围则隐藏（通过透明度控制）
         // 使用回调函数根据 value 和标签文本长度判断是否显示
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        
+
         fillOpacity: (datum: any) => {
           // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
           const radius = datum?.radius || 0;

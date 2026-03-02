@@ -73,6 +73,11 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
       {
         orient: 'bottom',
         type: 'band',
+        // 去掉坐标轴基线（domainLine）
+        domainLine: { visible: false },
+        // 去掉刻度线（tick / subTick）
+        tick: { visible: false },
+        subTick: { visible: false },
         // [FIXED] paddingOuter: 柱组与图表边缘的间距比例
         // 注：当比例计算结果 paddingOuter 绝对值间距 < 2px 时，建议设为 0
         // 当前设为 0.075，若柱宽过小导致间距 < 2px，可手动调整为 0
@@ -80,7 +85,17 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         // [FIXED] paddingInner: 柱组与柱组之间的间距比例
         paddingInner: 0.45,
       },
-      { orient: 'left', type: 'linear', min: 0, max: yMax },
+      {
+        orient: 'left',
+        type: 'linear',
+        min: 0,
+        max: yMax,
+        // 去掉坐标轴基线（domainLine）
+        domainLine: { visible: false },
+        // 去掉刻度线（tick / subTick）
+        tick: { visible: false },
+        subTick: { visible: false },
+      },
     ],
 
     // ============================================
@@ -237,13 +252,14 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
         leaderLine: {
           style: {
             stroke: t['border/line-divider'],
+            lineWidth: 0.5,
           },
         },
         // [DEFAULT] 堆叠标签配置
         stackLabel: {
           //position: 'max',
-          visible: true,
-          offset: 8,
+          visible: false,
+          offset: 4,
           valueType: 'change',
           style: {
             fontSize: 12,

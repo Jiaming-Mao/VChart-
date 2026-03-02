@@ -49,8 +49,8 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
       visible: true,
       style: {
         fontSize: 12,
-        fill: t['static/white'],
-        textAlign: 'center',
+        fill: t['bg/body'],
+       //textAlign: 'center',
         maxLineWidth: (d: any) => Math.max(0, (d.x1 - d.x0) - pad * 2),
         ellipsis: '...',
       },

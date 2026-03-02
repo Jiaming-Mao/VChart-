@@ -33,8 +33,6 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
-    // [DEFAULT] 外半径
-
 
     // [DEFAULT] 扇形样式配置
     rose: {
@@ -65,6 +63,7 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
             visible: true,
             style: {
               stroke: t['border/line-divider'],
+              lineWidth: 0.5,
             },
           },
           layout: {
