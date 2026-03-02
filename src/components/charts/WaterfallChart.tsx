@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { VChart } from '@visactor/react-vchart';
+import type { ISpec } from '@visactor/vchart';
 import { createWaterfallSpec } from '@/chart-configs/waterfall.config';
 import { useTheme } from '@/hooks/useTheme';
 import type { WaterfallDatum } from '@/types/dashboard';
@@ -28,7 +29,7 @@ export const WaterfallChart: React.FC<WaterfallChartProps> = ({ data }) => {
     );
   }
 
-  return <VChart key={theme} spec={spec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
+  return <VChart key={theme} spec={spec as ISpec} style={{ width: '100%', height: '100%' }} options={VCHART_OPTIONS} />;
 };
 
 export default WaterfallChart;

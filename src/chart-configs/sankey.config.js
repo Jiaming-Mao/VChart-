@@ -1,32 +1,35 @@
-import type { ICirclePackingChartSpec } from '@visactor/vchart';
-import type { CirclePackingBubbleDatum } from '@/types/dashboard';
-import { TOKEN_COLORS } from '@/vchart/theme';
+import { TOKEN_COLORS, getDataVCategoricalPalette14 } from '@/vchart/theme';
 
 /**
- * 圆形打包图 - 创建 Spec（工厂函数模式）
+ * 桑基图 - 创建 Spec（工厂函数模式）
  *
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
+ *
+ * 数据结构（与 mock / types 保持一致）：
+ * {
+ *   nodes: [{ nodeName: string }],
+ *   links: [{ source: number; target: number; value: number }]
+ * }
  */
-export function createCirclePackingSpec(
-  data: CirclePackingBubbleDatum[],
-  isDark = false
-): ICirclePackingChartSpec {
+export function createSankeySpec(data, isDark = false) {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
+  // DataV 14 色调色板，用于 link 渐变
+  const palette = getDataVCategoricalPalette14();
 
   return {
-    type: 'circlePacking',
+    type: 'sankey',
 
     data: [
       {
         id: 'data',
-        values: data,
+        values: [data],
       },
     ],
 
-    categoryField: 'name',
+    categoryField: 'nodeName',
     valueField: 'value',
-    // 按产品线着色，图例显示产品线
-    seriesField: 'productLine',
+    sourceField: 'source',
+    targetField: 'target',
 
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改
@@ -38,35 +41,52 @@ export function createCirclePackingSpec(
       bottom: 20,
       left: 20,
     },
-    // [FIXED] 气泡间距
+    // [FIXED] 节点样式
+    nodeWidth: 8,
+    node: {
+      style: {
+        // [DEFAULT] 节点圆角
+        cornerRadius: 2,
+      },
+    },
+    // [FIXED] 连接线样式
+    link: {
+      style: {
+        fillOpacity: 0.15,
+        // [DEFAULT] 连接线渐变填充（从源节点颜色到目标节点颜色）
+        fill: (datum) => {
+          // 获取源节点和目标节点在调色板中的颜色
+          const sourceIndex = typeof datum.source === 'number' ? datum.source : 0;
+          const targetIndex = typeof datum.target === 'number' ? datum.target : 0;
+          const sourceColor = palette[sourceIndex % palette.length];
+          const targetColor = palette[targetIndex % palette.length];
+          return {
+            gradient: 'linear',
+            x0: 0,
+            y0: 0.5,
+            x1: 1,
+            y1: 0.5,
+            stops: [
+              { offset: 0, color: sourceColor },
+              { offset: 1, color: targetColor },
+            ],
+          };
+        },
+      },
+    },
 
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
-    // [DEFAULT] 标签样式
+    // [DEFAULT] 标签配置
     label: {
-      // [DEFAULT] 智能反色 - 根据气泡颜色自动调整标签颜色
-      //smartInvert: true,
+      visible: true,
+      // [DEFAULT] 标签距离节点距离
+      offset: 8,
       style: {
-
+        fill: t['text/caption'],
+        // [DEFAULT] 标签字号
         fontSize: 12,
-        fill: t['bg/body'],
-        // [DEFAULT] 标签无描边
-        stroke: 'transparent',        
-        // [DEFAULT] 标签垂直居中
-        textBaseline: 'middle',
-        // [DEFAULT] 标签超出气泡范围则隐藏（通过透明度控制）
-        // 使用回调函数根据 value 和标签文本长度判断是否显示
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-        fillOpacity: (datum: any) => {
-          // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
-          const radius = datum?.radius || 0;
-          const text = datum?.name || '';
-          const textWidth = text.length * 10; // 估算文本宽度（每字符约 6px）
-          // 标签宽度小于直径的 80% 时显示，否则透明
-          return textWidth < radius * 1.6 ? 1 : 0;
-        },
       },
     },
 
@@ -128,7 +148,6 @@ export function createCirclePackingSpec(
       },
     },
 
-
     // ============================================
     // 图例配置
     // ============================================
@@ -182,10 +201,4 @@ export function createCirclePackingSpec(
     },
   };
 }
-
-// 导出数据结构说明（供参考）
-export const dataStructureExample = [
-  { name: 'bubble-1', value: 1, productLine: '系列A' },
-  { name: 'bubble-2', value: 2, productLine: '系列B' },
-];
 

@@ -1,5 +1,3 @@
-import type { IWaterfallChartSpec } from '@visactor/vchart';
-import type { WaterfallDatum } from '@/types/dashboard';
 import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
@@ -7,7 +5,7 @@ import { TOKEN_COLORS } from '@/vchart/theme';
  *
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
-export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWaterfallChartSpec {
+export function createWaterfallSpec(data, isDark = false) {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
 
   // 计算 Y 轴最大值，预留约 8% 顶部空间
@@ -27,7 +25,7 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
   // 注：stackLabel 的 datum 不是原始 WaterfallDatum，而是瀑布图内部的「累计数据」
   // - total 用 isTotal 标识
   // - 正负可用 end - start 表示本段增量
-  const getWaterfallBarColor = (d: any) => {
+  const getWaterfallBarColor = (d) => {
     if (d?.total || d?.isTotal) return t['dataV/categorical/3'];
 
     const start = Number(d?.start);
@@ -264,11 +262,11 @@ export function createWaterfallSpec(data: WaterfallDatum[], isDark = false): IWa
           style: {
             fontSize: 12,
             // 标签颜色跟随柱子颜色：正值=色板1, 负值=色板2, 总计=色板3
-            fill: (datum: any) => getWaterfallBarColor(datum),
+            fill: (datum) => getWaterfallBarColor(datum),
           },
         },
-
       },
     ],
   };
 }
+

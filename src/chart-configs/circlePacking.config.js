@@ -1,23 +1,27 @@
-import type { IRoseChartSpec } from '@visactor/vchart';
-import type { RoseDatum } from '@/types/dashboard';
 import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
- * 玫瑰图 - 创建 Spec（工厂函数模式）
+ * 圆形打包图 - 创建 Spec（工厂函数模式）
  *
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
-export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpec {
+export function createCirclePackingSpec(data, isDark = false) {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
 
   return {
-    type: 'rose',
+    type: 'circlePacking',
 
-    data: [{ id: 'data', values: data }],
+    data: [
+      {
+        id: 'data',
+        values: data,
+      },
+    ],
 
-    categoryField: 'category',
+    categoryField: 'name',
     valueField: 'value',
-    seriesField: 'category',
+    // 按产品线着色，图例显示产品线
+    seriesField: 'productLine',
 
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改
@@ -29,49 +33,34 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
       bottom: 20,
       left: 20,
     },
+    // [FIXED] 气泡间距
 
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
-
-    // [DEFAULT] 扇形样式配置
-    rose: {
+    // [DEFAULT] 标签样式
+    label: {
+      // [DEFAULT] 智能反色 - 根据气泡颜色自动调整标签颜色
+      //smartInvert: true,
       style: {
-        // [DEFAULT] 扇形边框颜色 - 使用背景色让扇形间有间距
-        stroke: t['bg/body'],
-        // [DEFAULT] 边框宽度 2px
-        lineWidth: 2,
-      },
-
-    },
-
-    // [DEFAULT] 标签配置（放在 series 内确保生效，玫瑰图不会自动合并顶层 label 到系列）
-    series: [
-      {
-        type: 'rose',
-        categoryField: 'category',
-        valueField: 'value',
-        label: {
-          visible: true,
-          position: 'outside',
-
-          style: {
-            fontSize: 12,
-            fill: t['text/title'],
-          },
-          line: {
-            visible: true,
-            style: {
-              stroke: t['border/line-divider'],
-              lineWidth: 0.5,
-            },
-          },
-          layout: {
-            align: 'edge',
-          },
+        fontSize: 12,
+        fill: t['bg/body'],
+        // [DEFAULT] 标签无描边
+        stroke: 'transparent',
+        // [DEFAULT] 标签垂直居中
+        textBaseline: 'middle',
+        // [DEFAULT] 标签超出气泡范围则隐藏（通过透明度控制）
+        // 使用回调函数根据 value 和标签文本长度判断是否显示
+        fillOpacity: (datum) => {
+          // VChart CirclePacking 在 datum 中提供了计算后的半径 datum.radius
+          const radius = datum?.radius || 0;
+          const text = datum?.name || '';
+          const textWidth = text.length * 10; // 估算文本宽度（每字符约 6px）
+          // 标签宽度小于直径的 80% 时显示，否则透明
+          return textWidth < radius * 1.6 ? 1 : 0;
         },
       },
-    ],
+    },
 
     // ============================================
     // Tooltip 配置
@@ -184,4 +173,10 @@ export function createRoseSpec(data: RoseDatum[], isDark = false): IRoseChartSpe
     },
   };
 }
+
+// 导出数据结构说明（供参考）
+export const dataStructureExample = [
+  { name: 'bubble-1', value: 1, productLine: '系列A' },
+  { name: 'bubble-2', value: 2, productLine: '系列B' },
+];
 

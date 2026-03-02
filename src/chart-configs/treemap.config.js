@@ -1,5 +1,3 @@
-import type { ITreemapChartSpec } from '@visactor/vchart';
-import type { TreemapNode } from '@/types/dashboard';
 import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
@@ -7,7 +5,7 @@ import { TOKEN_COLORS } from '@/vchart/theme';
  *
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
  */
-export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemapChartSpec {
+export function createTreemapSpec(data, isDark = false) {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
   const pad = 6;
 
@@ -50,8 +48,8 @@ export function createTreemapSpec(data: TreemapNode[], isDark = false): ITreemap
       style: {
         fontSize: 12,
         fill: t['bg/body'],
-       //textAlign: 'center',
-        maxLineWidth: (d: any) => Math.max(0, (d.x1 - d.x0) - pad * 2),
+        //textAlign: 'center',
+        maxLineWidth: (d) => Math.max(0, d.x1 - d.x0 - pad * 2),
         ellipsis: '...',
       },
     },

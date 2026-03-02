@@ -1,40 +1,21 @@
-import type { ISankeyChartSpec } from '@visactor/vchart';
-import type { SankeyData } from '@/types/dashboard';
-import { TOKEN_COLORS, getDataVCategoricalPalette14 } from '@/vchart/theme';
+import { TOKEN_COLORS } from '@/vchart/theme';
 
 /**
- * 桑基图 - 创建 Spec（工厂函数模式）
+ * 玫瑰图 - 创建 Spec（工厂函数模式）
  *
  * 样式配置分类说明见 ./CHART_CONFIG_RULES.md
- *
- * 数据结构（与 mock / types 保持一致）：
- * {
- *   nodes: [{ nodeName: string }],
- *   links: [{ source: number; target: number; value: number }]
- * }
  */
-export function createSankeySpec(
-  data: SankeyData,
-  isDark = false
-): ISankeyChartSpec & { padding?: { top?: number; right?: number; bottom?: number; left?: number } } {
+export function createRoseSpec(data, isDark = false) {
   const t = TOKEN_COLORS[isDark ? 'dark' : 'light'];
-  // DataV 14 色调色板，用于 link 渐变
-  const palette = getDataVCategoricalPalette14();
 
   return {
-    type: 'sankey',
+    type: 'rose',
 
-    data: [
-      {
-        id: 'data',
-        values: [data],
-      },
-    ],
+    data: [{ id: 'data', values: data }],
 
-    categoryField: 'nodeName',
+    categoryField: 'category',
     valueField: 'value',
-    sourceField: 'source',
-    targetField: 'target',
+    seriesField: 'category',
 
     // ============================================
     // [FIXED] 固定样式配置 - AI 不可修改
@@ -46,56 +27,48 @@ export function createSankeySpec(
       bottom: 20,
       left: 20,
     },
-    // [FIXED] 节点样式
-    nodeWidth: 8,
-    node: {
-      style: {
-        // [DEFAULT] 节点圆角
-        cornerRadius: 2,
-        
-      },
-    },
-    // [FIXED] 连接线样式
-    link: {
-      style: {
-        fillOpacity: 0.15,
-        // [DEFAULT] 连接线渐变填充（从源节点颜色到目标节点颜色）
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        fill: ((datum: any) => {
-          // 获取源节点和目标节点在调色板中的颜色
-          const sourceIndex = typeof datum.source === 'number' ? datum.source : 0;
-          const targetIndex = typeof datum.target === 'number' ? datum.target : 0;
-          const sourceColor = palette[sourceIndex % palette.length];
-          const targetColor = palette[targetIndex % palette.length];
-          return {
-            gradient: 'linear',
-            x0: 0,
-            y0: 0.5,
-            x1: 1,
-            y1: 0.5,
-            stops: [
-              { offset: 0, color: sourceColor },
-              { offset: 1, color: targetColor },
-            ],
-          };
-        }) as any,
-      },
-    },
 
     // ============================================
     // [DEFAULT] 默认样式配置 - AI 可根据用户需求修改
     // ============================================
-    // [DEFAULT] 标签配置
-    label: {
-      visible: true,
-      // [DEFAULT] 标签距离节点距离
-      offset: 8,
+
+    // [DEFAULT] 扇形样式配置
+    rose: {
       style: {
-        fill: t['text/caption'],
-        // [DEFAULT] 标签字号
-        fontSize: 12,
+        // [DEFAULT] 扇形边框颜色 - 使用背景色让扇形间有间距
+        stroke: t['bg/body'],
+        // [DEFAULT] 边框宽度 2px
+        lineWidth: 2,
       },
     },
+
+    // [DEFAULT] 标签配置（放在 series 内确保生效，玫瑰图不会自动合并顶层 label 到系列）
+    series: [
+      {
+        type: 'rose',
+        categoryField: 'category',
+        valueField: 'value',
+        label: {
+          visible: true,
+          position: 'outside',
+
+          style: {
+            fontSize: 12,
+            fill: t['text/title'],
+          },
+          line: {
+            visible: true,
+            style: {
+              stroke: t['border/line-divider'],
+              lineWidth: 0.5,
+            },
+          },
+          layout: {
+            align: 'edge',
+          },
+        },
+      },
+    ],
 
     // ============================================
     // Tooltip 配置
